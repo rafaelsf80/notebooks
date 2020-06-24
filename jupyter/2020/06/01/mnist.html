@@ -203,7 +203,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Colab has a variety of GPU types available (each new  instance is assigned one randomly, depending on availability). To see which type of GPU you have, you can run <code>!nvidia-smi</code> in a code cell. Some are quite fast!</p>
+<p>Colab tiene varias GPUS disponibles (se asigna una aleatoria, dependiendo de la disponibilidad). Para ver tipos de GPUs, se debe ejecutar <code>!nvidia-smi</code> en una celda.</p>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Each label is an integer between 0-9:</p>
+<p>Cada etiqueta es un número entero 0-9:</p>
 
 </div>
 </div>
@@ -338,7 +338,7 @@ window.onload = wrap_img;
 <h2 id="Preprocesar-los-datos">
 <a class="anchor" href="#Preprocesar-los-datos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preprocesar los datos<a class="anchor-link" href="#Preprocesar-los-datos"> </a>
 </h2>
-<p>Normalizamos los valores de píxeles entre 0 y 1. Importante hacerlo tanto en el set de entrenamiento como el de prueba.</p>
+<p>Normalizamos los valores de píxeles entre 0 y 1. Importante hacerlo tanto en el set de entrenamiento como el de prueba:</p>
 
 </div>
 </div>
@@ -446,9 +446,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The first layer in this network, <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Flatten">tf.keras.layers.Flatten</a>, transforms the format of the images from a two-dimensional array (of 28 by 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data. This is necessary since Dense layers require arrays as input.</p>
-<p>After the pixels are flattened, this model consists of a single Dense layer. This is a densely connected, or fully connected, neural layer. The Dense layer has 10 neurons with softmax activation. This returns an array of 10 probability scores that sum to 1.</p>
-<p>After classifying an image, each neuron will contains a score that indicates the probability that the current image belongs to one of the 10 classes.</p>
+<p>La primera capa, <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Flatten">tf.keras.layers.Flatten</a>, transforma el formato de las imágenes desde un array 2D (de 28 x 28 pixels) a uno unidimensional (de 28 * 28 = 784 pixels). Es como aplanar la imagen y poner los pixels en línea. Esta capa no tiene parámetros para aprender y es necesaria porque las capas densas necesitan arrays como entrada.</p>
+<p>Después de aplanar la imagen, el modelo tiene una única capa densa. Es una capa densa completamente conectada. La capa densa tiene 10 unidades con una activación tipo softmax, que devuelve un array con 10 notas de probabilidad que suman 1.</p>
+<p>Después de clasificar cada imagen, cada neurona contiene una nota (puntuación) con la probabilidad de que la imagen pertenezca a uno de las 10 clases.</p>
 
 </div>
 </div>

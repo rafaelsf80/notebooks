@@ -142,7 +142,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Comprobar-overfitting">Comprobar overfitting </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Ejercicio-opcional:-reducir-overfitting">Ejercicio opcional: reducir overfitting </a>
+<li class="toc-entry toc-h1"><a href="#Optional:-reducir-overfitting">Optional: reducir overfitting </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Instructions">Instructions </a></li>
 <li class="toc-entry toc-h2"><a href="#Data-augmentation">Data augmentation </a></li>
@@ -186,7 +186,7 @@ window.onload = wrap_img;
 <h2 id="Descargar-dataset">
 <a class="anchor" href="#Descargar-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Descargar dataset<a class="anchor-link" href="#Descargar-dataset"> </a>
 </h2>
-<p>la descarga no se hace sobre WiFi, sino sobre Colab, con lo que debería ser rápida.</p>
+<p>La descarga no se hace sobre WiFi, sino sobre Colab, con lo que debería ser rápida.</p>
 
 </div>
 </div>
@@ -199,6 +199,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 </pre></div>
 
     </div>
@@ -927,7 +928,7 @@ window.onload = wrap_img;
 <h2 id="Comprobar-overfitting">
 <a class="anchor" href="#Comprobar-overfitting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comprobar overfitting<a class="anchor-link" href="#Comprobar-overfitting"> </a>
 </h2>
-<p>Accuracy on the validation data is important: it helps you estimate how well our model is likely to work on new, unseen data in the future. To see how much overfitting is present (and when it occurs), we will create two plots, one for accuracy, and another for loss. Roughly, loss (or error) is the inverse of accuracy (lower is better). Unlike accuracy, loss takes the confidence of a prediction into account (a confidently wrong predicitions has a higher loss than one that is only slightly wrong).</p>
+<p>El precisión en el set de validación es importante: it helps you estimate how well our model is likely to work on new, unseen data in the future. To see how much overfitting is present (and when it occurs), we will create two plots, one for accuracy, and another for loss. Roughly, loss (or error) is the inverse of accuracy (lower is better). Unlike accuracy, loss takes the confidence of a prediction into account (a confidently wrong predicitions has a higher loss than one that is only slightly wrong).</p>
 
 </div>
 </div>
@@ -981,8 +982,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Ejercicio-opcional:-reducir-overfitting">
-<a class="anchor" href="#Ejercicio-opcional:-reducir-overfitting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ejercicio opcional: reducir overfitting<a class="anchor-link" href="#Ejercicio-opcional:-reducir-overfitting"> </a>
+<h1 id="Optional:-reducir-overfitting">
+<a class="anchor" href="#Optional:-reducir-overfitting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional: reducir overfitting<a class="anchor-link" href="#Optional:-reducir-overfitting"> </a>
 </h1>
 </div>
 </div>
