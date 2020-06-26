@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      25 min read
+      24 min read
     
 </span></p>
 
@@ -1127,7 +1127,9 @@ ServiceException: 409 Bucket fraud-detection-explainable-ai already exists.
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">json_serving_input_fn</span><span class="p">():</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">disable_v2_behavior</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">json_serving_input_fn</span><span class="p">():</span>
   <span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
   <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">feature_columns</span><span class="p">:</span>
       <span class="k">if</span> <span class="n">feat</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"type_indicator"</span><span class="p">:</span>
@@ -1135,64 +1137,16 @@ ServiceException: 409 Bucket fraud-detection-explainable-ai already exists.
       <span class="k">else</span><span class="p">:</span>
           <span class="n">inputs</span><span class="p">[</span><span class="n">feat</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">feat</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">feat</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">export</span><span class="o">.</span><span class="n">ServingInputReceiver</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">export_path</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">export_saved_model</span><span class="p">(</span>
+<span class="n">export_path</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">export_saved_model</span><span class="p">(</span>
     <span class="n">MODEL_BUCKET</span> <span class="o">+</span> <span class="s1">'/explanations'</span><span class="p">,</span>
     <span class="n">serving_input_receiver_fn</span><span class="o">=</span><span class="n">json_serving_input_fn</span>
 <span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+
+<span class="n">tf</span><span class="o">.</span><span class="n">enable_v2_behavior</span><span class="p">()</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>INFO:tensorflow:Calling model_fn.
-INFO:tensorflow:Done calling model_fn.
-WARNING:tensorflow:From /opt/conda/lib/python3.7/site-packages/tensorflow_core/python/saved_model/signature_def_utils_impl.py:201: build_tensor_info (from tensorflow.python.saved_model.utils_impl) is deprecated and will be removed in a future version.
-Instructions for updating:
-This function will only be available through the v1 compatibility library as tf.compat.v1.saved_model.utils.build_tensor_info or tf.compat.v1.saved_model.build_tensor_info.
-INFO:tensorflow:Signatures INCLUDED in export for Classify: None
-INFO:tensorflow:Signatures INCLUDED in export for Regress: None
-INFO:tensorflow:Signatures INCLUDED in export for Predict: ['predict']
-INFO:tensorflow:Signatures INCLUDED in export for Train: None
-INFO:tensorflow:Signatures INCLUDED in export for Eval: None
-INFO:tensorflow:Signatures EXCLUDED from export because they cannot be be served via TensorFlow Serving APIs:
-INFO:tensorflow:'serving_default' : Classification input must be a single string Tensor; got {'type': &lt;tf.Tensor 'type_indicator:0' shape=(?,) dtype=string&gt;, 'step': &lt;tf.Tensor 'step:0' shape=(?,) dtype=float32&gt;, 'amount': &lt;tf.Tensor 'amount:0' shape=(?,) dtype=float32&gt;, 'oldbalanceOrg': &lt;tf.Tensor 'oldbalanceOrg:0' shape=(?,) dtype=float32&gt;, 'newbalanceOrig': &lt;tf.Tensor 'newbalanceOrig:0' shape=(?,) dtype=float32&gt;, 'oldbalanceDest': &lt;tf.Tensor 'oldbalanceDest:0' shape=(?,) dtype=float32&gt;, 'newbalanceDest': &lt;tf.Tensor 'newbalanceDest:0' shape=(?,) dtype=float32&gt;}
-INFO:tensorflow:'classification' : Classification input must be a single string Tensor; got {'type': &lt;tf.Tensor 'type_indicator:0' shape=(?,) dtype=string&gt;, 'step': &lt;tf.Tensor 'step:0' shape=(?,) dtype=float32&gt;, 'amount': &lt;tf.Tensor 'amount:0' shape=(?,) dtype=float32&gt;, 'oldbalanceOrg': &lt;tf.Tensor 'oldbalanceOrg:0' shape=(?,) dtype=float32&gt;, 'newbalanceOrig': &lt;tf.Tensor 'newbalanceOrig:0' shape=(?,) dtype=float32&gt;, 'oldbalanceDest': &lt;tf.Tensor 'oldbalanceDest:0' shape=(?,) dtype=float32&gt;, 'newbalanceDest': &lt;tf.Tensor 'newbalanceDest:0' shape=(?,) dtype=float32&gt;}
-INFO:tensorflow:'regression' : Regression input must be a single string Tensor; got {'type': &lt;tf.Tensor 'type_indicator:0' shape=(?,) dtype=string&gt;, 'step': &lt;tf.Tensor 'step:0' shape=(?,) dtype=float32&gt;, 'amount': &lt;tf.Tensor 'amount:0' shape=(?,) dtype=float32&gt;, 'oldbalanceOrg': &lt;tf.Tensor 'oldbalanceOrg:0' shape=(?,) dtype=float32&gt;, 'newbalanceOrig': &lt;tf.Tensor 'newbalanceOrig:0' shape=(?,) dtype=float32&gt;, 'oldbalanceDest': &lt;tf.Tensor 'oldbalanceDest:0' shape=(?,) dtype=float32&gt;, 'newbalanceDest': &lt;tf.Tensor 'newbalanceDest:0' shape=(?,) dtype=float32&gt;}
-WARNING:tensorflow:Export includes no default signature!
-INFO:tensorflow:Restoring parameters from /tmp/tmp8ko2kwtc/model.ckpt-100
-INFO:tensorflow:Assets added to graph.
-INFO:tensorflow:No assets to write.
-WARNING:tensorflow:Issue encountered when serializing resources.
-Type is unsupported, or the types of the items don't match field type in CollectionDef. Note this is a warning and probably safe to ignore.
-'_Resource' object has no attribute 'name'
-INFO:tensorflow:SavedModel written to: gs://fraud-detection-explainable-ai/explanations/temp-b'1592813479'/saved_model.pb
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1398,6 +1352,24 @@ Operation completed over 1 objects/718.0 B.
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>gsutil cp gs://fraud-detection-explainable-ai/explanations/1592218671/explanation_metadata.json .
+<span class="o">!</span>gsutil cp explanation_metadata.json <span class="nv">$export_path</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
