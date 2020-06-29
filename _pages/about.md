@@ -4,10 +4,8 @@ title: About Me
 permalink: /about/
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+Site under construction
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+This is my [Github page](https://github.com/rafaelsf80)
 
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+This is my [LinkedIn page](https://www.linkedin.com/in/rafaelsf80/)
