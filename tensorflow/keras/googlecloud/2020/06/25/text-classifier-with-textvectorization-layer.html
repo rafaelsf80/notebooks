@@ -9,14 +9,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Multiclass text classification from scratchusing the new Keras TextVectorization layer" />
 <meta property="og:description" content="Multiclass text classification from scratchusing the new Keras TextVectorization layer" />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
 <meta property="og:site_name" content="Rafael Sánchez notebooks" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/chart-preview.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-25T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Multiclass text classification from scratchusing the new Keras TextVectorization layer","@type":"BlogPosting","headline":"Text Classification using TextVectorization layer","dateModified":"2020-06-25T00:00:00-05:00","datePublished":"2020-06-25T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/chart-preview.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html"},"@context":"https://schema.org"}</script>
+{"description":"Multiclass text classification from scratchusing the new Keras TextVectorization layer","@type":"BlogPosting","headline":"Text Classification using TextVectorization layer","dateModified":"2020-06-25T00:00:00-05:00","datePublished":"2020-06-25T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/chart-preview.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Rafael Sánchez notebooks" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Text Classification using TextVectorization layer | Rafael Sánchez notebooks</title>
@@ -25,14 +25,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Multiclass text classification from scratchusing the new Keras TextVectorization layer" />
 <meta property="og:description" content="Multiclass text classification from scratchusing the new Keras TextVectorization layer" />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" />
 <meta property="og:site_name" content="Rafael Sánchez notebooks" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/chart-preview.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-25T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Multiclass text classification from scratchusing the new Keras TextVectorization layer","@type":"BlogPosting","headline":"Text Classification using TextVectorization layer","dateModified":"2020-06-25T00:00:00-05:00","datePublished":"2020-06-25T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/chart-preview.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html"},"@context":"https://schema.org"}</script>
+{"description":"Multiclass text classification from scratchusing the new Keras TextVectorization layer","@type":"BlogPosting","headline":"Text Classification using TextVectorization layer","dateModified":"2020-06-25T00:00:00-05:00","datePublished":"2020-06-25T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/chart-preview.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -100,10 +100,10 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/notebooks/categories/#tensorflow,">tensorflow,</a>
+        <a class="category-tags-link" href="/notebooks/categories/#tensorflow">tensorflow</a>
         &nbsp;
       
-        <a class="category-tags-link" href="/notebooks/categories/#keras,">keras,</a>
+        <a class="category-tags-link" href="/notebooks/categories/#keras">keras</a>
         &nbsp;
       
         <a class="category-tags-link" href="/notebooks/categories/#googlecloud">googlecloud</a>
@@ -1303,7 +1303,7 @@ b'"list.split output trouble i was practicing some coding and i decided to make 
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/notebooks/tensorflow,/keras,/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" hidden></a>
+</script><a class="u-url" href="/notebooks/tensorflow/keras/googlecloud/2020/06/25/text-classifier-with-textvectorization-layer.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
