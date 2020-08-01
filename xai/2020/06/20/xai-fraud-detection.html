@@ -143,10 +143,10 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Exportamos-el-modelo-en-TensorFlow-1.x">Exportamos el modelo en TensorFlow 1.x </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Despliegue-a-AI-Platform-explanations">Despliegue a AI Platform explanations </a></li>
-<li class="toc-entry toc-h2"><a href="#Predeición-con-explicabilidad">Predeición con explicabilidad </a>
+<li class="toc-entry toc-h2"><a href="#Despliegue-e-AI-Platform-explanations">Despliegue e AI Platform explanations </a></li>
+<li class="toc-entry toc-h2"><a href="#Predicción-con-explicabilidad">Predicción con explicabilidad </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Step-1:-preparamos-datos-(data.txt)">Step 1: preparamos datos (data.txt) </a></li>
+<li class="toc-entry toc-h3"><a href="#Paso-1:-preparamos-datos-(data.txt)">Paso 1: preparamos datos (data.txt) </a></li>
 <li class="toc-entry toc-h3"><a href="#Step-2:-enviamos-data.txt-al-modelo-con-gcloud-beta-ai-platform-explain">Step 2: enviamos data.txt al modelo con gcloud beta ai-platform explain </a></li>
 </ul>
 </li>
@@ -208,6 +208,15 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Es un dataset sintético de Kaggle, con trasacciones fraudulentas.
+Son 6.3 millones de registros, y 8000 son fraudulentas (sólo el 0.1!)</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -241,15 +250,6 @@ Operation completed over 1 objects/470.7 MiB.
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Es un dataset sintético de Kaggle, con trasacciones fraudulentas.
-Son 6.3 millones de registros, y 8000 son fraudulentas (sólo el 0.1!)</p>
-
-</div>
-</div>
-</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1387,8 +1387,8 @@ Operation completed over 1 objects/718.0 B.
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Despliegue-a-AI-Platform-explanations">
-<a class="anchor" href="#Despliegue-a-AI-Platform-explanations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Despliegue a AI Platform explanations<a class="anchor-link" href="#Despliegue-a-AI-Platform-explanations"> </a>
+<h2 id="Despliegue-e-AI-Platform-explanations">
+<a class="anchor" href="#Despliegue-e-AI-Platform-explanations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Despliegue e AI Platform explanations<a class="anchor-link" href="#Despliegue-e-AI-Platform-explanations"> </a>
 </h2>
 </div>
 </div>
@@ -1543,8 +1543,8 @@ state: READY
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Predeición-con-explicabilidad">
-<a class="anchor" href="#Predeici%C3%B3n-con-explicabilidad" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predeición con explicabilidad<a class="anchor-link" href="#Predeici%C3%B3n-con-explicabilidad"> </a>
+<h2 id="Predicción-con-explicabilidad">
+<a class="anchor" href="#Predicci%C3%B3n-con-explicabilidad" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicción con explicabilidad<a class="anchor-link" href="#Predicci%C3%B3n-con-explicabilidad"> </a>
 </h2>
 </div>
 </div>
@@ -1552,8 +1552,8 @@ state: READY
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Step-1:-preparamos-datos-(data.txt)">
-<a class="anchor" href="#Step-1:-preparamos-datos-(data.txt)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: preparamos datos (data.txt)<a class="anchor-link" href="#Step-1:-preparamos-datos-(data.txt)"> </a>
+<h3 id="Paso-1:-preparamos-datos-(data.txt)">
+<a class="anchor" href="#Paso-1:-preparamos-datos-(data.txt)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paso 1: preparamos datos (data.txt)<a class="anchor-link" href="#Paso-1:-preparamos-datos-(data.txt)"> </a>
 </h3>
 </div>
 </div>
@@ -1724,7 +1724,6 @@ state: READY
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">explanations</span> <span class="o">=</span> <span class="o">!</span>gcloud beta ai-platform explain --model <span class="nv">$MODEL</span> --version <span class="nv">$VERSION</span> --json-instances<span class="o">=</span><span class="s1">'data.txt'</span> --verbosity error
-<span class="n">explanations</span><span class="o">.</span><span class="n">s</span>
 </pre></div>
 
     </div>
