@@ -3,36 +3,36 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Series temporales: manchas solares | Rafael Sánchez notebooks</title>
+<title>Series temporales: temperaturas en Melbourne | Rafael Sánchez notebooks</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Series temporales: manchas solares" />
+<meta property="og:title" content="Series temporales: temperaturas en Melbourne" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="(SPANISH) Se resolverá la competición Kaggle de manchas solares" />
-<meta property="og:description" content="(SPANISH) Se resolverá la competición Kaggle de manchas solares" />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html" />
+<meta name="description" content="(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com" />
+<meta property="og:description" content="(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html" />
 <meta property="og:site_name" content="Rafael Sánchez notebooks" />
-<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/kaggle.png" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/machine-learning-mastery.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-08-04T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"(SPANISH) Se resolverá la competición Kaggle de manchas solares","@type":"BlogPosting","headline":"Series temporales: manchas solares","dateModified":"2020-08-04T00:00:00-05:00","datePublished":"2020-08-04T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/kaggle.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html"},"@context":"https://schema.org"}</script>
+{"description":"(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com","@type":"BlogPosting","headline":"Series temporales: temperaturas en Melbourne","dateModified":"2020-08-04T00:00:00-05:00","datePublished":"2020-08-04T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/machine-learning-mastery.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Rafael Sánchez notebooks" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Series temporales: manchas solares | Rafael Sánchez notebooks</title>
+<title>Series temporales: temperaturas en Melbourne | Rafael Sánchez notebooks</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Series temporales: manchas solares" />
+<meta property="og:title" content="Series temporales: temperaturas en Melbourne" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="(SPANISH) Se resolverá la competición Kaggle de manchas solares" />
-<meta property="og:description" content="(SPANISH) Se resolverá la competición Kaggle de manchas solares" />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html" />
+<meta name="description" content="(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com" />
+<meta property="og:description" content="(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html" />
 <meta property="og:site_name" content="Rafael Sánchez notebooks" />
-<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/kaggle.png" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/machine-learning-mastery.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-08-04T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"(SPANISH) Se resolverá la competición Kaggle de manchas solares","@type":"BlogPosting","headline":"Series temporales: manchas solares","dateModified":"2020-08-04T00:00:00-05:00","datePublished":"2020-08-04T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/kaggle.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-sunspots.html"},"@context":"https://schema.org"}</script>
+{"description":"(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com","@type":"BlogPosting","headline":"Series temporales: temperaturas en Melbourne","dateModified":"2020-08-04T00:00:00-05:00","datePublished":"2020-08-04T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/machine-learning-mastery.png","url":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tensorflow/2020/08/04/time-series-temperatures.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +87,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Series temporales: manchas solares</h1><p class="page-description">(SPANISH) Se resolverá la competición Kaggle de manchas solares</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-08-04T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Series temporales: temperaturas en Melbourne</h1><p class="page-description">(SPANISH) Análisis de la serie temporal de temperaturas en Melbourse de MachineLearningMastery.com</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-08-04T00:00:00-05:00" itemprop="datePublished">
         Aug 4, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -111,19 +111,19 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-wrap flex-justify-end">
           <div class="px-2">
 
-    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-08-04-time-series-sunspots.ipynb" role="button" target="_blank">
+    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-08-04-time-series-temperatures.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/notebooks/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-08-04-time-series-sunspots.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-08-04-time-series-temperatures.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-08-04-time-series-sunspots.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-08-04-time-series-temperatures.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -137,7 +137,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2020-08-04-time-series-sunspots.ipynb
+# file to edit: _notebooks/2020-08-04-time-series-temperatures.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -155,7 +155,7 @@ window.onload = wrap_img;
 <h1 id="Introducción">
 <a class="anchor" href="#Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introducción<a class="anchor-link" href="#Introducci%C3%B3n"> </a>
 </h1>
-<p>Se resolverá la competición de Kaggle <a href="https://www.kaggle.com/robervalt/sunspots">sobre manchas solares</a>.</p>
+<p>Se analizará la serie temporal de temperaturas en Melbourne con el dataset disponible en MachineLearningMastery.com de Jason Brownlee.</p>
 
 </div>
 </div>
@@ -1078,7 +1078,7 @@ Epoch 150/150
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/notebooks/tensorflow/2020/08/04/time-series-sunspots.html" hidden></a>
+</script><a class="u-url" href="/notebooks/tensorflow/2020/08/04/time-series-temperatures.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
