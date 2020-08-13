@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      20 min read
+      19 min read
     
 </span></p>
 
@@ -155,7 +155,7 @@ window.onload = wrap_img;
 <h1 id="Introducción">
 <a class="anchor" href="#Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introducción<a class="anchor-link" href="#Introducci%C3%B3n"> </a>
 </h1>
-<p>Se analizará la serie temporal de temperaturas en Melbourne con el dataset disponible en MachineLearningMastery.com de Jason Brownlee.</p>
+<p>Se analizará la serie temporal de temperaturas mínimas en Melbourne con el dataset disponible en MachineLearningMastery.com de Jason Brownlee.</p>
 
 </div>
 </div>
@@ -232,8 +232,8 @@ window.onload = wrap_img;
 <span class="n">temps</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'/tmp/daily-min-temperatures.csv'</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-<span class="c1"># YOUR CODE HERE. READ TEMPERATURES INTO TEMPS</span>
-<span class="c1"># HAVE TIME STEPS BE A SIMPLE ARRAY OF 1, 2, 3, 4 etc</span>
+    
+    <span class="n">time_steps</span><span class="o">=</span>
 
 <span class="n">series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">temps</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time_step</span><span class="p">)</span>
