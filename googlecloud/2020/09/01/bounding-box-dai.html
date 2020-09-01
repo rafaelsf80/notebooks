@@ -133,13 +133,20 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#Introducción">Introducción </a></li>
-<li class="toc-entry toc-h1"><a href="#Instlación">Instlación </a>
+<li class="toc-entry toc-h1"><a href="#Instalación">Instalación </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Set-up-Google-Cloud-Project-Authentication">Set up Google Cloud Project Authentication </a></li>
-<li class="toc-entry toc-h2"><a href="#Call-the-Document-AI-API">Call the Document AI API </a></li>
-<li class="toc-entry toc-h2"><a href="#Helper-Function-for-Parsing-API-Response">Helper Function for Parsing API Response </a></li>
-<li class="toc-entry toc-h2"><a href="#Download-the-file-and-convert-it-to-a-jpg">Download the file and convert it to a jpg </a></li>
-<li class="toc-entry toc-h2"><a href="#Print-the-Entities-and-Draw-the-Boxes!">Print the Entities and Draw the Boxes! </a></li>
+<li class="toc-entry toc-h2"><a href="#Configurar-proyecto-Google-Cloud">Configurar proyecto Google Cloud </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Llamada-al-Document-AI-API">Llamada al Document AI API </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Función-para-parsear-la-respuesta-del-API">Función para parsear la respuesta del API </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Impresión-de-resultados">Impresión de resultados </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Descarga-del-archivo-y-conversión-a-jpg">Descarga del archivo y conversión a jpg </a></li>
+<li class="toc-entry toc-h2"><a href="#Imprimir-entidades-y-dibujar-las-cajas">Imprimir entidades y dibujar las cajas </a></li>
 </ul>
 </li>
 </ul><!--
@@ -173,8 +180,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Instlación">
-<a class="anchor" href="#Instlaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instlación<a class="anchor-link" href="#Instlaci%C3%B3n"> </a>
+<h1 id="Instalación">
+<a class="anchor" href="#Instalaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instalación<a class="anchor-link" href="#Instalaci%C3%B3n"> </a>
 </h1>
 </div>
 </div>
@@ -186,8 +193,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Install necessary Python libraries</span>
-<span class="o">!</span>pip install google-cloud-documentai
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install google-cloud-documentai
 <span class="o">!</span>pip install wand
 <span class="o">!</span>pip install pillo
 <span class="o">!</span>apt-get update
@@ -672,8 +678,8 @@ Processing triggers for libc-bin (2.27-3ubuntu1) ...
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Set-up-Google-Cloud-Project-Authentication">
-<a class="anchor" href="#Set-up-Google-Cloud-Project-Authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set up Google Cloud Project Authentication<a class="anchor-link" href="#Set-up-Google-Cloud-Project-Authentication"> </a>
+<h2 id="Configurar-proyecto-Google-Cloud">
+<a class="anchor" href="#Configurar-proyecto-Google-Cloud" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configurar proyecto Google Cloud<a class="anchor-link" href="#Configurar-proyecto-Google-Cloud"> </a>
 </h2>
 </div>
 </div>
@@ -822,9 +828,9 @@ created key [0e4877587f9cd4a19ddbdf48b31cfa3f85b5c336] of type [json] as [./key.
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Call-the-Document-AI-API">
-<a class="anchor" href="#Call-the-Document-AI-API" aria-hidden="true"><span class="octicon octicon-link"></span></a>Call the Document AI API<a class="anchor-link" href="#Call-the-Document-AI-API"> </a>
-</h2>
+<h1 id="Llamada-al-Document-AI-API">
+<a class="anchor" href="#Llamada-al-Document-AI-API" aria-hidden="true"><span class="octicon octicon-link"></span></a>Llamada al Document AI API<a class="anchor-link" href="#Llamada-al-Document-AI-API"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -1072,8 +1078,8 @@ field_value {
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Helper-Function-for-Parsing-API-Response">
-<a class="anchor" href="#Helper-Function-for-Parsing-API-Response" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Function for Parsing API Response<a class="anchor-link" href="#Helper-Function-for-Parsing-API-Response"> </a>
+<h2 id="Función-para-parsear-la-respuesta-del-API">
+<a class="anchor" href="#Funci%C3%B3n-para-parsear-la-respuesta-del-API" aria-hidden="true"><span class="octicon octicon-link"></span></a>Función para parsear la respuesta del API<a class="anchor-link" href="#Funci%C3%B3n-para-parsear-la-respuesta-del-API"> </a>
 </h2>
 </div>
 </div>
@@ -1178,8 +1184,11 @@ aches, chills, tired
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Download-the-file-and-convert-it-to-a-jpg">
-<a class="anchor" href="#Download-the-file-and-convert-it-to-a-jpg" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download the file and convert it to a jpg<a class="anchor-link" href="#Download-the-file-and-convert-it-to-a-jpg"> </a>
+<h1 id="Impresión-de-resultados">
+<a class="anchor" href="#Impresi%C3%B3n-de-resultados" aria-hidden="true"><span class="octicon octicon-link"></span></a>Impresión de resultados<a class="anchor-link" href="#Impresi%C3%B3n-de-resultados"> </a>
+</h1>
+<h2 id="Descarga-del-archivo-y-conversión-a-jpg">
+<a class="anchor" href="#Descarga-del-archivo-y-conversi%C3%B3n-a-jpg" aria-hidden="true"><span class="octicon octicon-link"></span></a>Descarga del archivo y conversión a jpg<a class="anchor-link" href="#Descarga-del-archivo-y-conversi%C3%B3n-a-jpg"> </a>
 </h2>
 <p>This way, we can draw on it here in this Jupyter Notebook</p>
 
@@ -1206,8 +1215,8 @@ aches, chills, tired
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Print-the-Entities-and-Draw-the-Boxes!">
-<a class="anchor" href="#Print-the-Entities-and-Draw-the-Boxes!" aria-hidden="true"><span class="octicon octicon-link"></span></a>Print the Entities and Draw the Boxes!<a class="anchor-link" href="#Print-the-Entities-and-Draw-the-Boxes!"> </a>
+<h2 id="Imprimir-entidades-y-dibujar-las-cajas">
+<a class="anchor" href="#Imprimir-entidades-y-dibujar-las-cajas" aria-hidden="true"><span class="octicon octicon-link"></span></a>Imprimir entidades y dibujar las cajas<a class="anchor-link" href="#Imprimir-entidades-y-dibujar-las-cajas"> </a>
 </h2>
 </div>
 </div>
