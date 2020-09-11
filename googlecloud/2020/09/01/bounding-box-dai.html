@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Análisis de documentos PDF con Google Document AI | Rafael Sánchez notebooks</title>
+<title>Análisis de documentos PDF con Google Document AI | Notebooks de Aprendizaje profundo en español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Análisis de documentos PDF con Google Document AI" />
 <meta property="og:locale" content="en_US" />
@@ -11,15 +11,15 @@
 <meta property="og:description" content="Análisis de documentos PDF con Google Document AI" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/googlecloud/2020/09/01/bounding-box-dai.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/googlecloud/2020/09/01/bounding-box-dai.html" />
-<meta property="og:site_name" content="Rafael Sánchez notebooks" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje profundo en español" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/automl.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-01T00:00:00-05:00" />
 <script type="application/ld+json">
 {"description":"Análisis de documentos PDF con Google Document AI","@type":"BlogPosting","headline":"Análisis de documentos PDF con Google Document AI","dateModified":"2020-09-01T00:00:00-05:00","datePublished":"2020-09-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/automl.png","url":"https://rafaelsf80.github.io/notebooks/googlecloud/2020/09/01/bounding-box-dai.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/googlecloud/2020/09/01/bounding-box-dai.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Rafael Sánchez notebooks" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Análisis de documentos PDF con Google Document AI | Rafael Sánchez notebooks</title>
+<link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje profundo en español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Análisis de documentos PDF con Google Document AI | Notebooks de Aprendizaje profundo en español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Análisis de documentos PDF con Google Document AI" />
 <meta property="og:locale" content="en_US" />
@@ -27,7 +27,7 @@
 <meta property="og:description" content="Análisis de documentos PDF con Google Document AI" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/googlecloud/2020/09/01/bounding-box-dai.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/googlecloud/2020/09/01/bounding-box-dai.html" />
-<meta property="og:site_name" content="Rafael Sánchez notebooks" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje profundo en español" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/automl.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-01T00:00:00-05:00" />
@@ -36,7 +36,7 @@
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
-<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Rafael Sánchez notebooks" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje profundo en español" />
 
 <script>
 function wrap_img(fn) {
@@ -69,7 +69,7 @@ window.onload = wrap_img;
 </script>
 </head><body><header class="site-header">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/notebooks/">Rafael Sánchez notebooks</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/notebooks/">Notebooks de Aprendizaje profundo en español</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      16 min read
+      7 min read
     
 </span></p>
 
@@ -171,8 +171,8 @@ window.onload = wrap_img;
 <h1 id="Introducción">
 <a class="anchor" href="#Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introducción<a class="anchor-link" href="#Introducci%C3%B3n"> </a>
 </h1>
-<p>Este notebook muestra cómo analizar un documento pdf.</p>
-<p>Aviso: contenido original en inglés <a href="">aqui</a></p>
+<p>Este notebook muestra cómo analizar un formulario (en formato pdf) y extraer ciertas entidades, como nombre, dirección, teléfono, .... como lista en python y como cajas con coordenadas para resaltarlos en el propio pdf.</p>
+<p>Aviso: contenido original en inglés <a href="https://bit.ly/docai-colab">aqui</a></p>
 
 </div>
 </div>
@@ -193,12 +193,12 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install google-cloud-documentai
-<span class="o">!</span>pip install wand
-<span class="o">!</span>pip install pillo
-<span class="o">!</span>apt-get update
-<span class="o">!</span>apt-get install poppler-utils # <span class="k">for</span> converting pdf to jpg. We<span class="err">'</span>ll use this <span class="k">for</span> displaying the pdf later
-<span class="o">!</span>apt-get install libmagickwand-dev
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip3 install google-cloud-documentai
+<span class="o">!</span>pip3 install wand
+<span class="o">!</span>pip3 install pillo
+<span class="c1">#!apt-get update</span>
+<span class="c1">#!apt-get install poppler-utils # for converting pdf to jpg. We'll use this for displaying the pdf later</span>
+<span class="c1">#!apt-get install libmagickwand-dev</span>
 </pre></div>
 
     </div>
@@ -212,360 +212,67 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Collecting google-cloud-documentai
-  Downloading https://files.pythonhosted.org/packages/61/88/4ce5b9d53049b8dd0c24b44100c31bf930de519a15dbaee26f8942ea962c/google_cloud_documentai-0.2.0-py2.py3-none-any.whl (46kB)
-     |████████████████████████████████| 51kB 3.1MB/s 
-Collecting proto-plus&gt;=0.4.0
-  Downloading https://files.pythonhosted.org/packages/93/af/1569a2b01b123c4762458e8ea823bbee91557f82f9bb964808020b9e9b11/proto-plus-1.4.0.tar.gz
+  Downloading google_cloud_documentai-0.2.0-py2.py3-none-any.whl (46 kB)
+     |████████████████████████████████| 46 kB 5.2 MB/s 
 Collecting google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0
-  Downloading https://files.pythonhosted.org/packages/bf/d5/a43e91cc1a1822b248033a7aca72637abe890e81fce4913497f7d0c1f91f/google_api_core-1.22.0-py2.py3-none-any.whl (91kB)
-     |████████████████████████████████| 92kB 6.7MB/s 
-Requirement already satisfied: protobuf&gt;=3.12.0 in /usr/local/lib/python3.6/dist-packages (from proto-plus&gt;=0.4.0-&gt;google-cloud-documentai) (3.12.2)
+  Downloading google_api_core-1.22.1-py2.py3-none-any.whl (91 kB)
+     |████████████████████████████████| 91 kB 7.3 MB/s 
+Collecting proto-plus&gt;=0.4.0
+  Downloading proto-plus-1.8.1.tar.gz (23 kB)
 Collecting google-auth&lt;2.0dev,&gt;=1.19.1
-  Downloading https://files.pythonhosted.org/packages/b7/4b/ad22f901ef599ac6dcce285f87e8b48067f2b6ff2a5eb0f4ef08227d057f/google_auth-1.19.2-py2.py3-none-any.whl (91kB)
-     |████████████████████████████████| 92kB 9.6MB/s 
-Requirement already satisfied: setuptools&gt;=34.0.0 in /usr/local/lib/python3.6/dist-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (49.1.0)
-Requirement already satisfied: pytz in /usr/local/lib/python3.6/dist-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2018.9)
-Requirement already satisfied: googleapis-common-protos&lt;2.0dev,&gt;=1.6.0 in /usr/local/lib/python3.6/dist-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.52.0)
-Requirement already satisfied: six&gt;=1.10.0 in /usr/local/lib/python3.6/dist-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.15.0)
-Requirement already satisfied: requests&lt;3.0.0dev,&gt;=2.18.0 in /usr/local/lib/python3.6/dist-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2.23.0)
-Requirement already satisfied: grpcio&lt;2.0dev,&gt;=1.29.0; extra == "grpc" in /usr/local/lib/python3.6/dist-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.30.0)
-Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.6/dist-packages (from google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (4.1.1)
-Requirement already satisfied: rsa&lt;5,&gt;=3.1.4; python_version &gt;= "3" in /usr/local/lib/python3.6/dist-packages (from google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (4.6)
-Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.6/dist-packages (from google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (0.2.8)
-Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.6/dist-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (3.0.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.6/dist-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2020.6.20)
-Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.6/dist-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2.10)
-Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /usr/local/lib/python3.6/dist-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.24.3)
-Requirement already satisfied: pyasn1&gt;=0.1.3 in /usr/local/lib/python3.6/dist-packages (from rsa&lt;5,&gt;=3.1.4; python_version &gt;= "3"-&gt;google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (0.4.8)
+  Downloading google_auth-1.21.0-py2.py3-none-any.whl (92 kB)
+     |████████████████████████████████| 92 kB 3.4 MB/s 
+Requirement already satisfied: six&gt;=1.10.0 in /Users/rafaelsanchez/Library/Python/3.7/lib/python/site-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.12.0)
+Requirement already satisfied: pytz in /usr/local/lib/python3.7/site-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2019.3)
+Requirement already satisfied: setuptools&gt;=34.0.0 in /usr/local/lib/python3.7/site-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (46.0.0)
+Collecting protobuf&gt;=3.12.0
+  Downloading protobuf-3.13.0-cp37-cp37m-macosx_10_9_x86_64.whl (1.3 MB)
+     |████████████████████████████████| 1.3 MB 11.2 MB/s 
+Requirement already satisfied: googleapis-common-protos&lt;2.0dev,&gt;=1.6.0 in /usr/local/lib/python3.7/site-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.51.0)
+Requirement already satisfied: requests&lt;3.0.0dev,&gt;=2.18.0 in /Users/rafaelsanchez/Library/Python/3.7/lib/python/site-packages (from google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2.22.0)
+Collecting grpcio&lt;2.0dev,&gt;=1.29.0; extra == "grpc"
+  Using cached grpcio-1.31.0-cp37-cp37m-macosx_10_9_x86_64.whl (3.0 MB)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.7/site-packages (from google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (4.0.0)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4; python_version &gt;= "3.5" in /usr/local/lib/python3.7/site-packages (from google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (4.0)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.7/site-packages (from google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (0.2.8)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/rafaelsanchez/Library/Python/3.7/lib/python/site-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2019.9.11)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /Users/rafaelsanchez/Library/Python/3.7/lib/python/site-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (1.24.3)
+Requirement already satisfied: idna&lt;2.9,&gt;=2.5 in /Users/rafaelsanchez/Library/Python/3.7/lib/python/site-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (2.8)
+Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /Users/rafaelsanchez/Library/Python/3.7/lib/python/site-packages (from requests&lt;3.0.0dev,&gt;=2.18.0-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (3.0.4)
+Requirement already satisfied: pyasn1&gt;=0.1.3 in /usr/local/lib/python3.7/site-packages (from rsa&lt;5,&gt;=3.1.4; python_version &gt;= "3.5"-&gt;google-auth&lt;2.0dev,&gt;=1.19.1-&gt;google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0-&gt;google-cloud-documentai) (0.4.8)
 Building wheels for collected packages: proto-plus
   Building wheel for proto-plus (setup.py) ... done
-  Created wheel for proto-plus: filename=proto_plus-1.4.0-cp36-none-any.whl size=35756 sha256=5e79ddc41432b3c3b79205493aad4de145d4eb2ecf0a054c0f4b50ed13de1446
-  Stored in directory: /root/.cache/pip/wheels/c7/49/a4/fe633e27fe0e43d0ca966aa67d1ac1e8c19e331736836e8e90
+  Created wheel for proto-plus: filename=proto_plus-1.8.1-py3-none-any.whl size=35874 sha256=862bcf025c31212792b26c2e8306a61f0357ba8e64c5efc76a45b93cb356ad8b
+  Stored in directory: /Users/rafaelsanchez/Library/Caches/pip/wheels/4f/2d/91/ed8cbdb4921f9c8af5b22353d213a700d9e1e43c9fae3aa92a
 Successfully built proto-plus
-<span class="ansi-red-fg">ERROR: google-colab 1.0.0 has requirement google-auth~=1.17.2, but you'll have google-auth 1.19.2 which is incompatible.</span>
-Installing collected packages: proto-plus, google-auth, google-api-core, google-cloud-documentai
-  Found existing installation: google-auth 1.17.2
-    Uninstalling google-auth-1.17.2:
-      Successfully uninstalled google-auth-1.17.2
-  Found existing installation: google-api-core 1.16.0
+<span class="ansi-red-fg">ERROR: tensorflow 2.1.0 has requirement gast==0.2.2, but you'll have gast 0.3.3 which is incompatible.</span>
+Installing collected packages: google-auth, protobuf, grpcio, google-api-core, proto-plus, google-cloud-documentai
+  Attempting uninstall: google-auth
+    Found existing installation: google-auth 1.13.1
+    Uninstalling google-auth-1.13.1:
+      Successfully uninstalled google-auth-1.13.1
+  Attempting uninstall: protobuf
+    Found existing installation: protobuf 3.11.3
+    Uninstalling protobuf-3.11.3:
+      Successfully uninstalled protobuf-3.11.3
+  Attempting uninstall: grpcio
+    Found existing installation: grpcio 1.28.1
+    Uninstalling grpcio-1.28.1:
+      Successfully uninstalled grpcio-1.28.1
+  Attempting uninstall: google-api-core
+    Found existing installation: google-api-core 1.16.0
     Uninstalling google-api-core-1.16.0:
       Successfully uninstalled google-api-core-1.16.0
-Successfully installed google-api-core-1.22.0 google-auth-1.19.2 google-cloud-documentai-0.2.0 proto-plus-1.4.0
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Collecting wand
-  Downloading https://files.pythonhosted.org/packages/82/e4/d00cdc270cad06a2dd2d3095ffe0f6541d69104db504c4e94de805e3c6e0/Wand-0.6.2-py2.py3-none-any.whl (130kB)
-     |████████████████████████████████| 133kB 6.1MB/s 
+<span class="ansi-red-fg">ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/bin/fixup_keywords.py'
+Consider using the `--user` option or check the permissions.
+</span>
+Collecting wand
+  Downloading Wand-0.6.2-py2.py3-none-any.whl (130 kB)
+     |████████████████████████████████| 130 kB 7.0 MB/s 
 Installing collected packages: wand
 Successfully installed wand-0.6.2
 <span class="ansi-red-fg">ERROR: Could not find a version that satisfies the requirement pillo (from versions: none)</span>
 <span class="ansi-red-fg">ERROR: No matching distribution found for pillo</span>
-Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-Hit:2 http://archive.ubuntu.com/ubuntu bionic InRelease
-Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-Get:4 http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu bionic InRelease [21.3 kB]
-Get:5 http://ppa.launchpad.net/marutter/c2d4u3.5/ubuntu bionic InRelease [15.4 kB]
-Get:6 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
-Get:7 https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/ InRelease [3,626 B]
-Ign:8 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  InRelease
-Ign:9 https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64  InRelease
-Get:10 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  Release [697 B]
-Get:11 https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64  Release [564 B]
-Get:12 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  Release.gpg [836 B]
-Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [113 kB]
-Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [13.9 kB]
-Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [1,329 kB]
-Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1,413 kB]
-Get:17 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [98.3 kB]
-Get:18 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [9,279 B]
-Get:19 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [870 kB]
-Get:20 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [1,024 kB]
-Get:21 http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu bionic/main amd64 Packages [43.3 kB]
-Get:22 https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64  Release.gpg [833 B]
-Get:23 http://ppa.launchpad.net/marutter/c2d4u3.5/ubuntu bionic/main Sources [1,851 kB]
-Get:24 http://ppa.launchpad.net/marutter/c2d4u3.5/ubuntu bionic/main amd64 Packages [893 kB]
-Get:25 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [8,432 B]
-Ign:26 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  Packages
-Get:26 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  Packages [232 kB]
-Get:27 https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64  Packages [43.7 kB]
-Fetched 8,237 kB in 3s (3,186 kB/s)
-Reading package lists... Done
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following package was automatically installed and is no longer required:
-  libnvidia-common-440
-Use 'apt autoremove' to remove it.
-The following NEW packages will be installed:
-  poppler-utils
-0 upgraded, 1 newly installed, 0 to remove and 113 not upgraded.
-Need to get 154 kB of archives.
-After this operation, 613 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 poppler-utils amd64 0.62.0-2ubuntu2.10 [154 kB]
-Fetched 154 kB in 0s (2,083 kB/s)
-Selecting previously unselected package poppler-utils.
-(Reading database ... 144465 files and directories currently installed.)
-Preparing to unpack .../poppler-utils_0.62.0-2ubuntu2.10_amd64.deb ...
-Unpacking poppler-utils (0.62.0-2ubuntu2.10) ...
-Setting up poppler-utils (0.62.0-2ubuntu2.10) ...
-Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following package was automatically installed and is no longer required:
-  libnvidia-common-440
-Use 'apt autoremove' to remove it.
-The following additional packages will be installed:
-  fonts-droid-fallback fonts-noto-mono ghostscript gir1.2-freedesktop
-  gir1.2-gdkpixbuf-2.0 gir1.2-rsvg-2.0 gsfonts imagemagick-6-common
-  libcairo-script-interpreter2 libcairo2-dev libcupsfilters1 libcupsimage2
-  libdjvulibre-dev libdjvulibre-text libdjvulibre21 libgdk-pixbuf2.0-dev
-  libgs9 libgs9-common libijs-0.35 libjbig2dec0 liblcms2-dev liblqr-1-0
-  liblqr-1-0-dev libmagickcore-6-arch-config libmagickcore-6-headers
-  libmagickcore-6.q16-3 libmagickcore-6.q16-3-extra libmagickcore-6.q16-dev
-  libmagickwand-6-headers libmagickwand-6.q16-3 libmagickwand-6.q16-dev
-  libpixman-1-dev librsvg2-2 librsvg2-common librsvg2-dev libwmf-dev
-  libwmf0.2-7 libxcb-shm0-dev poppler-data
-Suggested packages:
-  fonts-noto ghostscript-x libcairo2-doc inkscape libjxr-tools librsvg2-bin
-  librsvg2-doc libwmf-doc libwmf0.2-7-gtk fonts-japanese-mincho
-  | fonts-ipafont-mincho fonts-japanese-gothic | fonts-ipafont-gothic
-  fonts-arphic-ukai fonts-arphic-uming fonts-nanum
-The following NEW packages will be installed:
-  fonts-droid-fallback fonts-noto-mono ghostscript gir1.2-freedesktop
-  gir1.2-gdkpixbuf-2.0 gir1.2-rsvg-2.0 gsfonts imagemagick-6-common
-  libcairo-script-interpreter2 libcairo2-dev libcupsfilters1 libcupsimage2
-  libdjvulibre-dev libdjvulibre-text libdjvulibre21 libgdk-pixbuf2.0-dev
-  libgs9 libgs9-common libijs-0.35 libjbig2dec0 liblcms2-dev liblqr-1-0
-  liblqr-1-0-dev libmagickcore-6-arch-config libmagickcore-6-headers
-  libmagickcore-6.q16-3 libmagickcore-6.q16-3-extra libmagickcore-6.q16-dev
-  libmagickwand-6-headers libmagickwand-6.q16-3 libmagickwand-6.q16-dev
-  libmagickwand-dev libpixman-1-dev librsvg2-dev libwmf-dev libwmf0.2-7
-  libxcb-shm0-dev poppler-data
-The following packages will be upgraded:
-  librsvg2-2 librsvg2-common
-2 upgraded, 38 newly installed, 0 to remove and 111 not upgraded.
-Need to get 31.1 MB of archives.
-After this operation, 90.9 MB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-droid-fallback all 1:6.0.1r16-1.1 [1,805 kB]
-Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 imagemagick-6-common all 8:6.9.7.4+dfsg-16ubuntu6.8 [60.0 kB]
-Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6-arch-config amd64 8:6.9.7.4+dfsg-16ubuntu6.8 [25.1 kB]
-Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6-headers all 8:6.9.7.4+dfsg-16ubuntu6.8 [46.9 kB]
-Get:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 liblqr-1-0 amd64 0.4.2-2.1 [27.7 kB]
-Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6.q16-3 amd64 8:6.9.7.4+dfsg-16ubuntu6.8 [1,616 kB]
-Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickwand-6-headers all 8:6.9.7.4+dfsg-16ubuntu6.8 [10.6 kB]
-Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickwand-6.q16-3 amd64 8:6.9.7.4+dfsg-16ubuntu6.8 [294 kB]
-Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdjvulibre-text all 3.5.27.1-8ubuntu0.2 [49.3 kB]
-Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdjvulibre21 amd64 3.5.27.1-8ubuntu0.2 [560 kB]
-Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwmf0.2-7 amd64 0.2.8.4-12 [150 kB]
-Get:12 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6.q16-3-extra amd64 8:6.9.7.4+dfsg-16ubuntu6.8 [62.3 kB]
-Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdjvulibre-dev amd64 3.5.27.1-8ubuntu0.2 [2,381 kB]
-Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 liblcms2-dev amd64 2.9-1ubuntu0.1 [9,096 kB]
-Get:15 http://archive.ubuntu.com/ubuntu bionic/main amd64 liblqr-1-0-dev amd64 0.4.2-2.1 [69.1 kB]
-Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 librsvg2-common amd64 2.40.20-2ubuntu0.1 [5,056 B]
-Get:17 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 librsvg2-2 amd64 2.40.20-2ubuntu0.1 [98.7 kB]
-Get:18 http://archive.ubuntu.com/ubuntu bionic/main amd64 gir1.2-freedesktop amd64 1.56.1-1 [9,080 B]
-Get:19 http://archive.ubuntu.com/ubuntu bionic/main amd64 gir1.2-gdkpixbuf-2.0 amd64 2.36.11-2 [7,748 B]
-Get:20 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gir1.2-rsvg-2.0 amd64 2.40.20-2ubuntu0.1 [3,764 B]
-Get:21 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgdk-pixbuf2.0-dev amd64 2.36.11-2 [46.8 kB]
-Get:22 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcairo-script-interpreter2 amd64 1.15.10-2ubuntu0.1 [53.5 kB]
-Get:23 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpixman-1-dev amd64 0.34.0-2 [244 kB]
-Get:24 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-shm0-dev amd64 1.13-2~ubuntu18.04 [6,684 B]
-Get:25 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcairo2-dev amd64 1.15.10-2ubuntu0.1 [626 kB]
-Get:26 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 librsvg2-dev amd64 2.40.20-2ubuntu0.1 [10.7 kB]
-Get:27 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwmf-dev amd64 0.2.8.4-12 [172 kB]
-Get:28 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6.q16-dev amd64 8:6.9.7.4+dfsg-16ubuntu6.8 [969 kB]
-Get:29 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickwand-6.q16-dev amd64 8:6.9.7.4+dfsg-16ubuntu6.8 [289 kB]
-Get:30 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickwand-dev all 8:6.9.7.4+dfsg-16ubuntu6.8 [1,364 B]
-Get:31 http://archive.ubuntu.com/ubuntu bionic/main amd64 poppler-data all 0.4.8-2 [1,479 kB]
-Get:32 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-noto-mono all 20171026-2 [75.5 kB]
-Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcupsimage2 amd64 2.2.7-1ubuntu2.8 [18.6 kB]
-Get:34 http://archive.ubuntu.com/ubuntu bionic/main amd64 libijs-0.35 amd64 0.35-13 [15.5 kB]
-Get:35 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjbig2dec0 amd64 0.13-6 [55.9 kB]
-Get:36 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgs9-common all 9.26~dfsg+0-0ubuntu0.18.04.12 [5,092 kB]
-Get:37 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgs9 amd64 9.26~dfsg+0-0ubuntu0.18.04.12 [2,264 kB]
-Get:38 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 ghostscript amd64 9.26~dfsg+0-0ubuntu0.18.04.12 [50.9 kB]
-Get:39 http://archive.ubuntu.com/ubuntu bionic/main amd64 gsfonts all 1:8.11+urwcyr1.0.7~pre44-4.4 [3,120 kB]
-Get:40 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcupsfilters1 amd64 1.20.2-0ubuntu3.1 [108 kB]
-Fetched 31.1 MB in 1s (59.6 MB/s)
-Extracting templates from packages: 100%
-Selecting previously unselected package fonts-droid-fallback.
-(Reading database ... 144493 files and directories currently installed.)
-Preparing to unpack .../00-fonts-droid-fallback_1%3a6.0.1r16-1.1_all.deb ...
-Unpacking fonts-droid-fallback (1:6.0.1r16-1.1) ...
-Selecting previously unselected package imagemagick-6-common.
-Preparing to unpack .../01-imagemagick-6-common_8%3a6.9.7.4+dfsg-16ubuntu6.8_all.deb ...
-Unpacking imagemagick-6-common (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libmagickcore-6-arch-config:amd64.
-Preparing to unpack .../02-libmagickcore-6-arch-config_8%3a6.9.7.4+dfsg-16ubuntu6.8_amd64.deb ...
-Unpacking libmagickcore-6-arch-config:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libmagickcore-6-headers.
-Preparing to unpack .../03-libmagickcore-6-headers_8%3a6.9.7.4+dfsg-16ubuntu6.8_all.deb ...
-Unpacking libmagickcore-6-headers (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package liblqr-1-0:amd64.
-Preparing to unpack .../04-liblqr-1-0_0.4.2-2.1_amd64.deb ...
-Unpacking liblqr-1-0:amd64 (0.4.2-2.1) ...
-Selecting previously unselected package libmagickcore-6.q16-3:amd64.
-Preparing to unpack .../05-libmagickcore-6.q16-3_8%3a6.9.7.4+dfsg-16ubuntu6.8_amd64.deb ...
-Unpacking libmagickcore-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libmagickwand-6-headers.
-Preparing to unpack .../06-libmagickwand-6-headers_8%3a6.9.7.4+dfsg-16ubuntu6.8_all.deb ...
-Unpacking libmagickwand-6-headers (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libmagickwand-6.q16-3:amd64.
-Preparing to unpack .../07-libmagickwand-6.q16-3_8%3a6.9.7.4+dfsg-16ubuntu6.8_amd64.deb ...
-Unpacking libmagickwand-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libdjvulibre-text.
-Preparing to unpack .../08-libdjvulibre-text_3.5.27.1-8ubuntu0.2_all.deb ...
-Unpacking libdjvulibre-text (3.5.27.1-8ubuntu0.2) ...
-Selecting previously unselected package libdjvulibre21:amd64.
-Preparing to unpack .../09-libdjvulibre21_3.5.27.1-8ubuntu0.2_amd64.deb ...
-Unpacking libdjvulibre21:amd64 (3.5.27.1-8ubuntu0.2) ...
-Selecting previously unselected package libwmf0.2-7:amd64.
-Preparing to unpack .../10-libwmf0.2-7_0.2.8.4-12_amd64.deb ...
-Unpacking libwmf0.2-7:amd64 (0.2.8.4-12) ...
-Selecting previously unselected package libmagickcore-6.q16-3-extra:amd64.
-Preparing to unpack .../11-libmagickcore-6.q16-3-extra_8%3a6.9.7.4+dfsg-16ubuntu6.8_amd64.deb ...
-Unpacking libmagickcore-6.q16-3-extra:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libdjvulibre-dev:amd64.
-Preparing to unpack .../12-libdjvulibre-dev_3.5.27.1-8ubuntu0.2_amd64.deb ...
-Unpacking libdjvulibre-dev:amd64 (3.5.27.1-8ubuntu0.2) ...
-Selecting previously unselected package liblcms2-dev:amd64.
-Preparing to unpack .../13-liblcms2-dev_2.9-1ubuntu0.1_amd64.deb ...
-Unpacking liblcms2-dev:amd64 (2.9-1ubuntu0.1) ...
-Selecting previously unselected package liblqr-1-0-dev:amd64.
-Preparing to unpack .../14-liblqr-1-0-dev_0.4.2-2.1_amd64.deb ...
-Unpacking liblqr-1-0-dev:amd64 (0.4.2-2.1) ...
-Preparing to unpack .../15-librsvg2-common_2.40.20-2ubuntu0.1_amd64.deb ...
-Unpacking librsvg2-common:amd64 (2.40.20-2ubuntu0.1) over (2.40.20-2) ...
-Preparing to unpack .../16-librsvg2-2_2.40.20-2ubuntu0.1_amd64.deb ...
-Unpacking librsvg2-2:amd64 (2.40.20-2ubuntu0.1) over (2.40.20-2) ...
-Selecting previously unselected package gir1.2-freedesktop:amd64.
-Preparing to unpack .../17-gir1.2-freedesktop_1.56.1-1_amd64.deb ...
-Unpacking gir1.2-freedesktop:amd64 (1.56.1-1) ...
-Selecting previously unselected package gir1.2-gdkpixbuf-2.0:amd64.
-Preparing to unpack .../18-gir1.2-gdkpixbuf-2.0_2.36.11-2_amd64.deb ...
-Unpacking gir1.2-gdkpixbuf-2.0:amd64 (2.36.11-2) ...
-Selecting previously unselected package gir1.2-rsvg-2.0:amd64.
-Preparing to unpack .../19-gir1.2-rsvg-2.0_2.40.20-2ubuntu0.1_amd64.deb ...
-Unpacking gir1.2-rsvg-2.0:amd64 (2.40.20-2ubuntu0.1) ...
-Selecting previously unselected package libgdk-pixbuf2.0-dev.
-Preparing to unpack .../20-libgdk-pixbuf2.0-dev_2.36.11-2_amd64.deb ...
-Unpacking libgdk-pixbuf2.0-dev (2.36.11-2) ...
-Selecting previously unselected package libcairo-script-interpreter2:amd64.
-Preparing to unpack .../21-libcairo-script-interpreter2_1.15.10-2ubuntu0.1_amd64.deb ...
-Unpacking libcairo-script-interpreter2:amd64 (1.15.10-2ubuntu0.1) ...
-Selecting previously unselected package libpixman-1-dev:amd64.
-Preparing to unpack .../22-libpixman-1-dev_0.34.0-2_amd64.deb ...
-Unpacking libpixman-1-dev:amd64 (0.34.0-2) ...
-Selecting previously unselected package libxcb-shm0-dev:amd64.
-Preparing to unpack .../23-libxcb-shm0-dev_1.13-2~ubuntu18.04_amd64.deb ...
-Unpacking libxcb-shm0-dev:amd64 (1.13-2~ubuntu18.04) ...
-Selecting previously unselected package libcairo2-dev:amd64.
-Preparing to unpack .../24-libcairo2-dev_1.15.10-2ubuntu0.1_amd64.deb ...
-Unpacking libcairo2-dev:amd64 (1.15.10-2ubuntu0.1) ...
-Selecting previously unselected package librsvg2-dev:amd64.
-Preparing to unpack .../25-librsvg2-dev_2.40.20-2ubuntu0.1_amd64.deb ...
-Unpacking librsvg2-dev:amd64 (2.40.20-2ubuntu0.1) ...
-Selecting previously unselected package libwmf-dev.
-Preparing to unpack .../26-libwmf-dev_0.2.8.4-12_amd64.deb ...
-Unpacking libwmf-dev (0.2.8.4-12) ...
-Selecting previously unselected package libmagickcore-6.q16-dev:amd64.
-Preparing to unpack .../27-libmagickcore-6.q16-dev_8%3a6.9.7.4+dfsg-16ubuntu6.8_amd64.deb ...
-Unpacking libmagickcore-6.q16-dev:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libmagickwand-6.q16-dev:amd64.
-Preparing to unpack .../28-libmagickwand-6.q16-dev_8%3a6.9.7.4+dfsg-16ubuntu6.8_amd64.deb ...
-Unpacking libmagickwand-6.q16-dev:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package libmagickwand-dev.
-Preparing to unpack .../29-libmagickwand-dev_8%3a6.9.7.4+dfsg-16ubuntu6.8_all.deb ...
-Unpacking libmagickwand-dev (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Selecting previously unselected package poppler-data.
-Preparing to unpack .../30-poppler-data_0.4.8-2_all.deb ...
-Unpacking poppler-data (0.4.8-2) ...
-Selecting previously unselected package fonts-noto-mono.
-Preparing to unpack .../31-fonts-noto-mono_20171026-2_all.deb ...
-Unpacking fonts-noto-mono (20171026-2) ...
-Selecting previously unselected package libcupsimage2:amd64.
-Preparing to unpack .../32-libcupsimage2_2.2.7-1ubuntu2.8_amd64.deb ...
-Unpacking libcupsimage2:amd64 (2.2.7-1ubuntu2.8) ...
-Selecting previously unselected package libijs-0.35:amd64.
-Preparing to unpack .../33-libijs-0.35_0.35-13_amd64.deb ...
-Unpacking libijs-0.35:amd64 (0.35-13) ...
-Selecting previously unselected package libjbig2dec0:amd64.
-Preparing to unpack .../34-libjbig2dec0_0.13-6_amd64.deb ...
-Unpacking libjbig2dec0:amd64 (0.13-6) ...
-Selecting previously unselected package libgs9-common.
-Preparing to unpack .../35-libgs9-common_9.26~dfsg+0-0ubuntu0.18.04.12_all.deb ...
-Unpacking libgs9-common (9.26~dfsg+0-0ubuntu0.18.04.12) ...
-Selecting previously unselected package libgs9:amd64.
-Preparing to unpack .../36-libgs9_9.26~dfsg+0-0ubuntu0.18.04.12_amd64.deb ...
-Unpacking libgs9:amd64 (9.26~dfsg+0-0ubuntu0.18.04.12) ...
-Selecting previously unselected package ghostscript.
-Preparing to unpack .../37-ghostscript_9.26~dfsg+0-0ubuntu0.18.04.12_amd64.deb ...
-Unpacking ghostscript (9.26~dfsg+0-0ubuntu0.18.04.12) ...
-Selecting previously unselected package gsfonts.
-Preparing to unpack .../38-gsfonts_1%3a8.11+urwcyr1.0.7~pre44-4.4_all.deb ...
-Unpacking gsfonts (1:8.11+urwcyr1.0.7~pre44-4.4) ...
-Selecting previously unselected package libcupsfilters1:amd64.
-Preparing to unpack .../39-libcupsfilters1_1.20.2-0ubuntu3.1_amd64.deb ...
-Unpacking libcupsfilters1:amd64 (1.20.2-0ubuntu3.1) ...
-Setting up libgs9-common (9.26~dfsg+0-0ubuntu0.18.04.12) ...
-Setting up imagemagick-6-common (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up fonts-droid-fallback (1:6.0.1r16-1.1) ...
-Setting up librsvg2-2:amd64 (2.40.20-2ubuntu0.1) ...
-Setting up liblcms2-dev:amd64 (2.9-1ubuntu0.1) ...
-Setting up gsfonts (1:8.11+urwcyr1.0.7~pre44-4.4) ...
-Setting up libcairo-script-interpreter2:amd64 (1.15.10-2ubuntu0.1) ...
-Setting up poppler-data (0.4.8-2) ...
-Setting up libdjvulibre-text (3.5.27.1-8ubuntu0.2) ...
-Setting up gir1.2-freedesktop:amd64 (1.56.1-1) ...
-Setting up libxcb-shm0-dev:amd64 (1.13-2~ubuntu18.04) ...
-Setting up libmagickcore-6-arch-config:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up gir1.2-gdkpixbuf-2.0:amd64 (2.36.11-2) ...
-Setting up librsvg2-common:amd64 (2.40.20-2ubuntu0.1) ...
-Setting up fonts-noto-mono (20171026-2) ...
-Setting up libcupsfilters1:amd64 (1.20.2-0ubuntu3.1) ...
-Setting up libcupsimage2:amd64 (2.2.7-1ubuntu2.8) ...
-Setting up liblqr-1-0:amd64 (0.4.2-2.1) ...
-Setting up libjbig2dec0:amd64 (0.13-6) ...
-Setting up libgdk-pixbuf2.0-dev (2.36.11-2) ...
-Setting up libpixman-1-dev:amd64 (0.34.0-2) ...
-Setting up gir1.2-rsvg-2.0:amd64 (2.40.20-2ubuntu0.1) ...
-Setting up libijs-0.35:amd64 (0.35-13) ...
-Setting up libmagickcore-6-headers (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up libgs9:amd64 (9.26~dfsg+0-0ubuntu0.18.04.12) ...
-Setting up libwmf0.2-7:amd64 (0.2.8.4-12) ...
-Setting up libwmf-dev (0.2.8.4-12) ...
-Setting up libmagickcore-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up liblqr-1-0-dev:amd64 (0.4.2-2.1) ...
-Setting up libcairo2-dev:amd64 (1.15.10-2ubuntu0.1) ...
-Setting up libdjvulibre21:amd64 (3.5.27.1-8ubuntu0.2) ...
-Setting up libmagickwand-6-headers (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up libdjvulibre-dev:amd64 (3.5.27.1-8ubuntu0.2) ...
-Setting up librsvg2-dev:amd64 (2.40.20-2ubuntu0.1) ...
-Setting up ghostscript (9.26~dfsg+0-0ubuntu0.18.04.12) ...
-Setting up libmagickwand-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up libmagickcore-6.q16-3-extra:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up libmagickcore-6.q16-dev:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up libmagickwand-6.q16-dev:amd64 (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Setting up libmagickwand-dev (8:6.9.7.4+dfsg-16ubuntu6.8) ...
-Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
-Processing triggers for fontconfig (2.12.6-0ubuntu2) ...
-Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.36.11-2) ...
-Processing triggers for libc-bin (2.27-3ubuntu1) ...
-/sbin/ldconfig.real: /usr/local/lib/python3.6/dist-packages/ideep4py/lib/libmkldnn.so.0 is not a symbolic link
-
 </pre>
 </div>
 </div>
@@ -609,63 +316,58 @@ Processing triggers for libc-bin (2.27-3ubuntu1) ...
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ContextualVersionConflict</span>                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-3-d2a75236ebad&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> google<span class="ansi-blue-fg">.</span>cloud <span class="ansi-green-fg">import</span> documentai_v1beta2 <span class="ansi-green-fg">as</span> documentai
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">from</span> wand<span class="ansi-blue-fg">.</span>image <span class="ansi-green-fg">import</span> Image <span class="ansi-green-fg">as</span> WImage
+<span class="ansi-red-fg">OSError</span>                                   Traceback (most recent call last)
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/wand/api.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">    150</span> <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 151</span><span class="ansi-red-fg">     </span>libraries <span class="ansi-blue-fg">=</span> load_library<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    152</span> <span class="ansi-green-fg">except</span> <span class="ansi-blue-fg">(</span>OSError<span class="ansi-blue-fg">,</span> IOError<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/wand/api.py</span> in <span class="ansi-cyan-fg">load_library</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">    139</span>         <span class="ansi-green-fg">return</span> libwand<span class="ansi-blue-fg">,</span> libmagick
+<span class="ansi-green-fg">--&gt; 140</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">raise</span> IOError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'cannot find library; tried paths: '</span> <span class="ansi-blue-fg">+</span> repr<span class="ansi-blue-fg">(</span>tried_paths<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    141</span> 
+
+<span class="ansi-red-fg">OSError</span>: cannot find library; tried paths: []
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-4-d2a75236ebad&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">from</span> google<span class="ansi-blue-fg">.</span>cloud <span class="ansi-green-fg">import</span> documentai_v1beta2 <span class="ansi-green-fg">as</span> documentai
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> wand<span class="ansi-blue-fg">.</span>image <span class="ansi-green-fg">import</span> Image <span class="ansi-green-fg">as</span> WImage
 <span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> PIL <span class="ansi-green-fg">import</span> Image<span class="ansi-blue-fg">,</span> ImageDraw
 <span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">import</span> os
 
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/google/cloud/documentai_v1beta2/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/wand/image.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     16</span> <span class="ansi-green-fg">import</span> weakref
 <span class="ansi-green-intense-fg ansi-bold">     17</span> 
-<span class="ansi-green-intense-fg ansi-bold">     18</span> 
-<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>services<span class="ansi-blue-fg">.</span>document_understanding_service <span class="ansi-green-fg">import</span> DocumentUnderstandingServiceClient
-<span class="ansi-green-intense-fg ansi-bold">     20</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>types<span class="ansi-blue-fg">.</span>document <span class="ansi-green-fg">import</span> Document
-<span class="ansi-green-intense-fg ansi-bold">     21</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>types<span class="ansi-blue-fg">.</span>document_understanding <span class="ansi-green-fg">import</span> AutoMlParams
+<span class="ansi-green-fg">---&gt; 18</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span> <span class="ansi-green-fg">import</span> assertions
+<span class="ansi-green-intense-fg ansi-bold">     19</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>api <span class="ansi-green-fg">import</span> libc<span class="ansi-blue-fg">,</span> libmagick<span class="ansi-blue-fg">,</span> library
+<span class="ansi-green-intense-fg ansi-bold">     20</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>color <span class="ansi-green-fg">import</span> Color
 
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/google/cloud/documentai_v1beta2/services/document_understanding_service/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">     16</span> <span class="ansi-red-fg">#</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span> 
-<span class="ansi-green-fg">---&gt; 18</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>client <span class="ansi-green-fg">import</span> DocumentUnderstandingServiceClient
-<span class="ansi-green-intense-fg ansi-bold">     19</span> 
-<span class="ansi-green-intense-fg ansi-bold">     20</span> __all__ <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"DocumentUnderstandingServiceClient"</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/wand/assertions.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">    153</span> 
+<span class="ansi-green-intense-fg ansi-bold">    154</span> <span class="ansi-red-fg"># Lazy load recursive import</span>
+<span class="ansi-green-fg">--&gt; 155</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>color <span class="ansi-green-fg">import</span> Color  <span class="ansi-red-fg"># noqa: E402</span>
 
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/google/cloud/documentai_v1beta2/services/document_understanding_service/client.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">    345</span> <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    346</span>     _client_info = gapic_v1.client_info.ClientInfo(
-<span class="ansi-green-fg">--&gt; 347</span><span class="ansi-red-fg">         </span>gapic_version<span class="ansi-blue-fg">=</span>pkg_resources<span class="ansi-blue-fg">.</span>get_distribution<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"google-cloud-documentai"</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>version
-<span class="ansi-green-intense-fg ansi-bold">    348</span>     )
-<span class="ansi-green-intense-fg ansi-bold">    349</span> <span class="ansi-green-fg">except</span> pkg_resources<span class="ansi-blue-fg">.</span>DistributionNotFound<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/wand/color.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">import</span> numbers
+<span class="ansi-green-intense-fg ansi-bold">      9</span> 
+<span class="ansi-green-fg">---&gt; 10</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>api <span class="ansi-green-fg">import</span> library
+<span class="ansi-green-intense-fg ansi-bold">     11</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>cdefs<span class="ansi-blue-fg">.</span>structures <span class="ansi-green-fg">import</span> MagickPixelPacket<span class="ansi-blue-fg">,</span> PixelInfo
+<span class="ansi-green-intense-fg ansi-bold">     12</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>compat <span class="ansi-green-fg">import</span> binary<span class="ansi-blue-fg">,</span> text
 
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pkg_resources/__init__.py</span> in <span class="ansi-cyan-fg">get_distribution</span><span class="ansi-blue-fg">(dist)</span>
-<span class="ansi-green-intense-fg ansi-bold">    479</span>         dist <span class="ansi-blue-fg">=</span> Requirement<span class="ansi-blue-fg">.</span>parse<span class="ansi-blue-fg">(</span>dist<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span>     <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>dist<span class="ansi-blue-fg">,</span> Requirement<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 481</span><span class="ansi-red-fg">         </span>dist <span class="ansi-blue-fg">=</span> get_provider<span class="ansi-blue-fg">(</span>dist<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    482</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> isinstance<span class="ansi-blue-fg">(</span>dist<span class="ansi-blue-fg">,</span> Distribution<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    483</span>         <span class="ansi-green-fg">raise</span> TypeError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"Expected string, Requirement, or Distribution"</span><span class="ansi-blue-fg">,</span> dist<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/wand/api.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">    175</span>     raise ImportError('MagickWand shared library not found.\n'
+<span class="ansi-green-intense-fg ansi-bold">    176</span>                       <span class="ansi-blue-fg">'You probably had not installed ImageMagick library.\n'</span>
+<span class="ansi-green-fg">--&gt; 177</span><span class="ansi-red-fg">                       'Try to install:\n  ' + msg)
+</span><span class="ansi-green-intense-fg ansi-bold">    178</span> 
+<span class="ansi-green-intense-fg ansi-bold">    179</span> <span class="ansi-red-fg">#: (:class:`ctypes.CDLL`) The MagickWand library.</span>
 
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pkg_resources/__init__.py</span> in <span class="ansi-cyan-fg">get_provider</span><span class="ansi-blue-fg">(moduleOrReq)</span>
-<span class="ansi-green-intense-fg ansi-bold">    355</span>     <span class="ansi-blue-fg">"""Return an IResourceProvider for the named module or requirement"""</span>
-<span class="ansi-green-intense-fg ansi-bold">    356</span>     <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>moduleOrReq<span class="ansi-blue-fg">,</span> Requirement<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 357</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> working_set<span class="ansi-blue-fg">.</span>find<span class="ansi-blue-fg">(</span>moduleOrReq<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">or</span> require<span class="ansi-blue-fg">(</span>str<span class="ansi-blue-fg">(</span>moduleOrReq<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    358</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    359</span>         module <span class="ansi-blue-fg">=</span> sys<span class="ansi-blue-fg">.</span>modules<span class="ansi-blue-fg">[</span>moduleOrReq<span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pkg_resources/__init__.py</span> in <span class="ansi-cyan-fg">require</span><span class="ansi-blue-fg">(self, *requirements)</span>
-<span class="ansi-green-intense-fg ansi-bold">    898</span>         included<span class="ansi-blue-fg">,</span> even <span class="ansi-green-fg">if</span> they were already activated <span class="ansi-green-fg">in</span> this working set<span class="ansi-blue-fg">.</span>
-<span class="ansi-green-intense-fg ansi-bold">    899</span>         """
-<span class="ansi-green-fg">--&gt; 900</span><span class="ansi-red-fg">         </span>needed <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>resolve<span class="ansi-blue-fg">(</span>parse_requirements<span class="ansi-blue-fg">(</span>requirements<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    901</span> 
-<span class="ansi-green-intense-fg ansi-bold">    902</span>         <span class="ansi-green-fg">for</span> dist <span class="ansi-green-fg">in</span> needed<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pkg_resources/__init__.py</span> in <span class="ansi-cyan-fg">resolve</span><span class="ansi-blue-fg">(self, requirements, env, installer, replace_conflicting, extras)</span>
-<span class="ansi-green-intense-fg ansi-bold">    789</span>                 <span class="ansi-red-fg"># Oops, the "best" so far conflicts with a dependency</span>
-<span class="ansi-green-intense-fg ansi-bold">    790</span>                 dependent_req <span class="ansi-blue-fg">=</span> required_by<span class="ansi-blue-fg">[</span>req<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-fg">--&gt; 791</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> VersionConflict<span class="ansi-blue-fg">(</span>dist<span class="ansi-blue-fg">,</span> req<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>with_context<span class="ansi-blue-fg">(</span>dependent_req<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    792</span> 
-<span class="ansi-green-intense-fg ansi-bold">    793</span>             <span class="ansi-red-fg"># push the new requirements onto the stack</span>
-
-<span class="ansi-red-fg">ContextualVersionConflict</span>: (google-api-core 1.16.0 (/usr/local/lib/python3.6/dist-packages), Requirement.parse('google-api-core[grpc]&lt;2.0.0dev,&gt;=1.17.0'), {'google-cloud-documentai'})</pre>
+<span class="ansi-red-fg">ImportError</span>: MagickWand shared library not found.
+You probably had not installed ImageMagick library.
+Try to install:
+  brew install freetype imagemagick</pre>
 </div>
 </div>
 
@@ -691,7 +393,7 @@ Processing triggers for libc-bin (2.27-3ubuntu1) ...
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Authenticate with Cloud</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># En caso de usar Colab, ejecutar lo siguiente</span>
 <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">auth</span>
 <span class="n">auth</span><span class="o">.</span><span class="n">authenticate_user</span><span class="p">()</span>
 </pre></div>
@@ -726,7 +428,7 @@ Processing triggers for libc-bin (2.27-3ubuntu1) ...
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Create a service account and download keys</p>
+<p>Crear cuenta de servicio y descargar la clave:</p>
 
 </div>
 </div>
@@ -770,7 +472,7 @@ created key [0e4877587f9cd4a19ddbdf48b31cfa3f85b5c336] of type [json] as [./key.
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Enable the Document AI and Invoice AI APIs</p>
+<p>Habilitar dos APIs: la de Document AI y la de Invoice AI</p>
 
 </div>
 </div>
@@ -800,7 +502,7 @@ created key [0e4877587f9cd4a19ddbdf48b31cfa3f85b5c336] of type [json] as [./key.
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Download the doc</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Descargar el archivo</span>
 <span class="o">!</span>gsutil cp <span class="nv">$PDF_URI</span> ./doc.pdf
 </pre></div>
 
@@ -913,7 +615,7 @@ created key [0e4877587f9cd4a19ddbdf48b31cfa3f85b5c336] of type [json] as [./key.
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's check out the response</p>
+<p>Respuesta del API:</p>
 
 </div>
 </div>
@@ -1323,7 +1025,7 @@ aches, chills, tired
         </p>
       </div>
       <div class="footer-col">
-        <p>A list of notebooks I use in lectures and presentations.</p>
+        <p>Una lista de notebooks en español sobre inteligencia artificial y aprendizaje profundo.</p>
       </div>
     </div>
 
