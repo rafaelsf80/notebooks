@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>AutoML tables | Notebooks de Aprendizaje Profundo en Español</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="AutoML tables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables" />
+<meta property="og:description" content="(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/automl.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-05T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables","@type":"BlogPosting","headline":"AutoML tables","dateModified":"2020-09-05T00:00:00-05:00","datePublished":"2020-09-05T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/automl.png","url":"https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>AutoML tables | Notebooks de Aprendizaje Profundo en Español</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="AutoML tables" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables" />
+<meta property="og:description" content="(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/automl.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-05T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables","@type":"BlogPosting","headline":"AutoML tables","dateModified":"2020-09-05T00:00:00-05:00","datePublished":"2020-09-05T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/automl.png","url":"https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/googlecloud/automl/2020/09/05/automl-tables.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/notebooks/">Notebooks de Aprendizaje Profundo en Español</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/notebooks/about/">About Me</a><a class="page-link" href="/notebooks/search/">Search</a><a class="page-link" href="/notebooks/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AutoML tables</h1><p class="page-description">(SPANISH) Entrenamiento e inferencia con Google Cloud AutoML Tables</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-05T00:00:00-05:00" itemprop="datePublished">
+        Sep 5, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/notebooks/categories/#googlecloud">googlecloud</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/notebooks/categories/#automl">automl</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-09-05-automl-tables.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/notebooks/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-09-05-automl-tables.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-09-05-automl-tables.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#1.-Project-set-up">1. Project set up </a></li>
+<li class="toc-entry toc-h2"><a href="#2.-Initialize-and-authenticate">2. Initialize and authenticate </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Install-the-client-library">Install the client library </a></li>
+<li class="toc-entry toc-h3"><a href="#Authenticate-using-service-account-key">Authenticate using service account key </a></li>
+<li class="toc-entry toc-h3"><a href="#Test">Test </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#3.-Import-training-data">3. Import training data </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Create-dataset">Create dataset </a></li>
+<li class="toc-entry toc-h3"><a href="#Import-data">Import data </a></li>
+<li class="toc-entry toc-h3"><a href="#Review-the-specs">Review the specs </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#4.-Update-dataset:-assign-a-label-column-and-enable-nullable-columns">4. Update dataset: assign a label column and enable nullable columns </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Update-a-column:-set-to-nullable">Update a column: set to nullable </a></li>
+<li class="toc-entry toc-h3"><a href="#Update-dataset:-assign-a-label">Update dataset: assign a label </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#5.-Creating-a-model">5. Creating a model </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Train-a-model">Train a model </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#6.-Make-a-prediction">6. Make a prediction </a></li>
+<li class="toc-entry toc-h2"><a href="#7.-Batch-prediction">7. Batch prediction </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Initialize-prediction">Initialize prediction </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-09-05-automl-tables.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Project-set-up">
+<a class="anchor" href="#1.-Project-set-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Project set up<a class="anchor-link" href="#1.-Project-set-up"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Follow the <a href="https://cloud.google.com/automl-tables/docs/">AutoML Tables documentation</a> to</p>
+<ul>
+<li>Create a Google Cloud Platform (GCP) project.</li>
+<li>Enable billing.</li>
+<li>Apply to whitelist your project.</li>
+<li>Enable AutoML API.</li>
+<li>Enable AutoML Talbes API.</li>
+<li>Create a service account, grant required permissions, and download the service account private key.</li>
+</ul>
+<p>You also need to upload your data into Google Cloud Storage (GCS) or BigQuery. For example, to use GCS as your data source</p>
+<ul>
+<li>Create a GCS bucket.</li>
+<li>Upload the training and batch prediction files.</li>
+</ul>
+<p><strong>Warning:</strong> Private keys must be kept secret. If you expose your private key it is recommended to revoke it immediately from the Google Cloud Console.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Initialize-and-authenticate">
+<a class="anchor" href="#2.-Initialize-and-authenticate" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Initialize and authenticate<a class="anchor-link" href="#2.-Initialize-and-authenticate"> </a>
+</h2>
+<p>This section runs intialization and authentication. It creates an authenticated session which is required for running any of the following sections.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Install-the-client-library">
+<a class="anchor" href="#Install-the-client-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install the client library<a class="anchor-link" href="#Install-the-client-library"> </a>
+</h3>
+<p>Run the following cell. Click on the 'Choose Files' button and select the client library compressed file. The file is uploaded to your Colab and installed using <code>pip</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Install AutoML Tables client library { vertical-output: true }</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="kn">import</span> <span class="nn">tarfile</span>
+
+<span class="c1"># Upload the client library</span>
+<span class="n">compressed_file_upload</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+<span class="n">compressed_file_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">compressed_file_upload</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Decompress the client library</span>
+<span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">compressed_file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+  <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">'.'</span><span class="p">)</span>
+<span class="c1"># Install the client library</span>
+<span class="o">!</span>pip install ./python/automl-v1beta1
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Authenticate-using-service-account-key">
+<a class="anchor" href="#Authenticate-using-service-account-key" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authenticate using service account key<a class="anchor-link" href="#Authenticate-using-service-account-key"> </a>
+</h3>
+<p>Run the following cell. Click on the 'Choose Files' button and select the service account private key file. If your Service Account key file or folder is hidden, you can reveal it in a Mac by pressing the <b>Command + Shift + .</b> combo.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Authenticate using service account key and create a client. { vertical-output: true }</span>
+
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">automl_v1beta1</span>
+
+<span class="c1"># Upload service account key</span>
+<span class="n">keyfile_upload</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+<span class="n">keyfile_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">keyfile_upload</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Authenticate and create an AutoML client.</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">automl_v1beta1</span><span class="o">.</span><span class="n">AutoMlClient</span><span class="o">.</span><span class="n">from_service_account_file</span><span class="p">(</span><span class="n">keyfile_name</span><span class="p">)</span>
+<span class="c1"># Authenticate and create a prediction service client.</span>
+<span class="n">prediction_client</span> <span class="o">=</span> <span class="n">automl_v1beta1</span><span class="o">.</span><span class="n">PredictionServiceClient</span><span class="o">.</span><span class="n">from_service_account_file</span><span class="p">(</span><span class="n">keyfile_name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Test">
+<a class="anchor" href="#Test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test<a class="anchor-link" href="#Test"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Enter your GCP project ID.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title GCP project ID and location</span>
+
+<span class="n">project_id</span> <span class="o">=</span> <span class="s1">'&lt;PROJECT_ID&gt;'</span> <span class="c1">#@param {type:'string'}</span>
+<span class="n">location</span> <span class="o">=</span> <span class="s1">'us-central1'</span>
+<span class="n">location_path</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">location_path</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+<span class="n">location_path</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To test whether your project set up and authentication steps were successful, run the following cell to list your datasets.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title List datasets. { vertical-output: true }</span>
+
+<span class="n">list_datasets_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_datasets</span><span class="p">(</span><span class="n">location_path</span><span class="p">)</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">dataset</span><span class="o">.</span><span class="n">display_name</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">list_datasets_response</span><span class="p">}</span>
+<span class="n">datasets</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also print the list of your models by running the following cell.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title List models. { vertical-output: true }</span>
+
+<span class="n">list_models_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_models</span><span class="p">(</span><span class="n">location_path</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span><span class="n">model</span><span class="o">.</span><span class="n">display_name</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">list_models_response</span><span class="p">}</span>
+<span class="n">models</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Import-training-data">
+<a class="anchor" href="#3.-Import-training-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Import training data<a class="anchor-link" href="#3.-Import-training-data"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Create-dataset">
+<a class="anchor" href="#Create-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create dataset<a class="anchor-link" href="#Create-dataset"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select a dataset display name and pass your table source information to create a new dataset.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Create dataset { vertical-output: true, output-height: 200 }</span>
+
+<span class="n">dataset_display_name</span> <span class="o">=</span> <span class="s1">'iris_dataset'</span> <span class="c1">#@param {type: 'string'}</span>
+
+<span class="n">create_dataset_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+    <span class="n">location_path</span><span class="p">,</span>
+    <span class="p">{</span><span class="s1">'display_name'</span><span class="p">:</span> <span class="n">dataset_display_name</span><span class="p">,</span> <span class="s1">'tables_dataset_metadata'</span><span class="p">:</span> <span class="p">{}})</span>
+<span class="n">dataset_name</span> <span class="o">=</span> <span class="n">create_dataset_response</span><span class="o">.</span><span class="n">name</span>
+<span class="n">create_dataset_response</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Import-data">
+<a class="anchor" href="#Import-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import data<a class="anchor-link" href="#Import-data"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can import your data to AutoML Tables from GCS or BigQuery. For this tutorial, you can use the <a href="https://storage.cloud.google.com/rostam-193618-tutorial/automl-tables-v1beta1/iris.csv">iris dataset</a> as your training data. You can create a GCS bucket and upload the  data into your bucket. The URI for your file is <code>gs://BUCKET_NAME/FOLDER_NAME1/FOLDER_NAME2/.../FILE_NAME</code>. Alternatively you can create a BigQuery table and upload the data into the table. The URI for your table is <code>bq://PROJECT_ID.DATASET_ID.TABLE_ID</code>.</p>
+<p>Importing data may take a few minutes or hours depending on the size of your data. If your Colab times out, run the following command to retrieve your dataset. Replace <code>dataset_name</code> with its actual value obtained in the preceding cells.</p>
+
+<pre><code>dataset = client.get_dataset(dataset_name)</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title ... if data source is GCS { vertical-output: true }</span>
+
+<span class="n">dataset_gcs_input_uris</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'gs://&lt;BUCKET_NAME&gt;/&lt;FILE_PATH&gt;'</span><span class="p">,]</span> <span class="c1">#@param</span>
+<span class="c1"># Define input configuration.</span>
+<span class="n">input_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'gcs_source'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'input_uris'</span><span class="p">:</span> <span class="n">dataset_gcs_input_uris</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title ... if data source is BigQuery { vertical-output: true }</span>
+
+<span class="n">dataset_bq_input_uri</span> <span class="o">=</span> <span class="s1">'bq://&lt;PROJECT_ID&gt;.&lt;DATASET_NAME&gt;.&lt;TABLE_NAME&gt;'</span> <span class="c1">#@param {type: 'string'}</span>
+<span class="c1"># Define input configuration.</span>
+<span class="n">input_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'bigquery_source'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'input_uri'</span><span class="p">:</span> <span class="n">dataset_bq_input_uri</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> <span class="c1">#@title Import data { vertical-output: true }</span>
+
+<span class="n">import_data_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">input_config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset import operation: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">import_data_response</span><span class="o">.</span><span class="n">operation</span><span class="p">))</span>
+<span class="c1"># Wait until import is done.</span>
+<span class="n">import_data_result</span> <span class="o">=</span> <span class="n">import_data_response</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">import_data_result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Review-the-specs">
+<a class="anchor" href="#Review-the-specs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review the specs<a class="anchor-link" href="#Review-the-specs"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run the following command to see table specs such as row count.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Table schema { vertical-output: true }</span>
+
+<span class="kn">import</span> <span class="nn">google.cloud.automl_v1beta1.proto.data_types_pb2</span> <span class="k">as</span> <span class="nn">data_types</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># List table specs</span>
+<span class="n">list_table_specs_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_table_specs</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span>
+<span class="n">table_specs</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">list_table_specs_response</span><span class="p">]</span>
+<span class="c1"># List column specs</span>
+<span class="n">table_spec_name</span> <span class="o">=</span> <span class="n">table_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">list_column_specs_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_column_specs</span><span class="p">(</span><span class="n">table_spec_name</span><span class="p">)</span>
+<span class="n">column_specs</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="o">.</span><span class="n">display_name</span><span class="p">:</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">list_column_specs_response</span><span class="p">}</span>
+<span class="c1"># Table schema pie chart.</span>
+<span class="n">type_counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">column_spec</span> <span class="ow">in</span> <span class="n">column_specs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+  <span class="n">type_name</span> <span class="o">=</span> <span class="n">data_types</span><span class="o">.</span><span class="n">TypeCode</span><span class="o">.</span><span class="n">Name</span><span class="p">(</span><span class="n">column_spec</span><span class="o">.</span><span class="n">data_type</span><span class="o">.</span><span class="n">type_code</span><span class="p">)</span>
+  <span class="n">type_counts</span><span class="p">[</span><span class="n">type_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">type_counts</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">labels</span><span class="o">=</span><span class="n">type_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">'</span><span class="si">%1.1f%%</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run the following command to see column specs such inferred schema.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Update-dataset:-assign-a-label-column-and-enable-nullable-columns">
+<a class="anchor" href="#4.-Update-dataset:-assign-a-label-column-and-enable-nullable-columns" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Update dataset: assign a label column and enable nullable columns<a class="anchor-link" href="#4.-Update-dataset:-assign-a-label-column-and-enable-nullable-columns"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>AutoML Tables automatically detects your data column type. For example, for the <a href="https://storage.cloud.google.com/rostam-193618-tutorial/automl-tables-v1beta1/iris.csv">Iris dataset</a> it detects <code>species</code> to be categorical and <code>petal_length</code>, <code>petal_width</code>, <code>sepal_length</code>, and <code>sepal_width</code> to be numerical. Depending on the type of your label column, AutoML Tables chooses to run a classification or regression model. If your label column contains only numerical values, but they represent categories, change your label column type to categorical by updating your schema.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Update-a-column:-set-to-nullable">
+<a class="anchor" href="#Update-a-column:-set-to-nullable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update a column: set to nullable<a class="anchor-link" href="#Update-a-column:-set-to-nullable"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Update dataset { vertical-output: true }</span>
+
+<span class="n">update_column_spec_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="n">column_specs</span><span class="p">[</span><span class="s1">'sepal_length'</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="s1">'data_type'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'type_code'</span><span class="p">:</span> <span class="s1">'FLOAT64'</span><span class="p">,</span>
+        <span class="s1">'nullable'</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">update_column_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">update_column_spec</span><span class="p">(</span><span class="n">update_column_spec_dict</span><span class="p">)</span>
+<span class="n">update_column_response</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Tip:</strong> You can use <code>'type_code': 'CATEGORY'</code> in the preceding <code>update_column_spec_dict</code> to convert the column data type from <code>FLOAT64</code> <code>to</code>CATEGORY`.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Update-dataset:-assign-a-label">
+<a class="anchor" href="#Update-dataset:-assign-a-label" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update dataset: assign a label<a class="anchor-link" href="#Update-dataset:-assign-a-label"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Update dataset { vertical-output: true }</span>
+
+<span class="n">label_column_name</span> <span class="o">=</span> <span class="s1">'species'</span> <span class="c1">#@param {type: 'string'}</span>
+<span class="n">label_column_spec</span> <span class="o">=</span> <span class="n">column_specs</span><span class="p">[</span><span class="n">label_column_name</span><span class="p">]</span>
+<span class="n">label_column_id</span> <span class="o">=</span> <span class="n">label_column_spec</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Label column ID: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label_column_id</span><span class="p">))</span>
+<span class="c1"># Define the values of the fields to be updated.</span>
+<span class="n">update_dataset_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
+    <span class="s1">'tables_dataset_metadata'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'target_column_spec_id'</span><span class="p">:</span> <span class="n">label_column_id</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">update_dataset_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">update_dataset</span><span class="p">(</span><span class="n">update_dataset_dict</span><span class="p">)</span>
+<span class="n">update_dataset_response</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Creating-a-model">
+<a class="anchor" href="#5.-Creating-a-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Creating a model<a class="anchor-link" href="#5.-Creating-a-model"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Train-a-model">
+<a class="anchor" href="#Train-a-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Train a model<a class="anchor-link" href="#Train-a-model"> </a>
+</h3>
+<p>Specify the duration of the training. For example, <code>'train_budget_milli_node_hours': 1000</code> runs the training for one hour. If your Colab times out, use <code>client.list_models(location_path)</code> to check whether your model has been created. Then use model name to continue to the next steps. Run the following command to retrieve your model. Replace <code>model_name</code> with its actual value.</p>
+
+<pre><code>model = client.get_model(model_name)</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Create model { vertical-output: true }</span>
+
+<span class="n">model_display_name</span> <span class="o">=</span> <span class="s1">'iris_model'</span> <span class="c1">#@param {type:'string'}</span>
+
+<span class="n">model_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'display_name'</span><span class="p">:</span> <span class="n">model_display_name</span><span class="p">,</span>
+    <span class="s1">'dataset_id'</span><span class="p">:</span> <span class="n">dataset_name</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">'tables_model_metadata'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'train_budget_milli_node_hours'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">create_model_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">location_path</span><span class="p">,</span> <span class="n">model_dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset import operation: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">create_model_response</span><span class="o">.</span><span class="n">operation</span><span class="p">))</span>
+<span class="c1"># Wait until model training is done.</span>
+<span class="n">create_model_result</span> <span class="o">=</span> <span class="n">create_model_response</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="n">create_model_result</span><span class="o">.</span><span class="n">name</span>
+<span class="n">create_model_result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="6.-Make-a-prediction">
+<a class="anchor" href="#6.-Make-a-prediction" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Make a prediction<a class="anchor-link" href="#6.-Make-a-prediction"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are two different prediction modes: online and batch. The following cell shows you how to make an online prediction.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Make an online prediction { vertical-output: true }</span>
+
+<span class="n">sepal_length</span> <span class="o">=</span> <span class="mf">5.8</span> <span class="c1">#@param {type:'slider', min:4, max:8, step:0.1}</span>
+<span class="n">sepal_width</span> <span class="o">=</span> <span class="mf">3.1</span> <span class="c1">#@param {type:'slider', min:2, max:5, step:0.1}</span>
+<span class="n">petal_length</span> <span class="o">=</span> <span class="mf">3.8</span> <span class="c1">#@param {type:'slider', min:1, max:7, step:0.1}</span>
+<span class="n">petal_width</span> <span class="o">=</span> <span class="mf">1.2</span> <span class="c1">#@param {type:'slider', min:0, max:3, step:0.1}</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'row'</span><span class="p">:</span> <span class="p">{</span>       
+        <span class="s1">'values'</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s1">'number_value'</span><span class="p">:</span> <span class="n">sepal_length</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">'number_value'</span><span class="p">:</span> <span class="n">sepal_width</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">'number_value'</span><span class="p">:</span> <span class="n">petal_length</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">'number_value'</span><span class="p">:</span> <span class="n">petal_width</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1"># Make a prediction.</span>
+<span class="n">prediction_client</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7.-Batch-prediction">
+<a class="anchor" href="#7.-Batch-prediction" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Batch prediction<a class="anchor-link" href="#7.-Batch-prediction"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Initialize-prediction">
+<a class="anchor" href="#Initialize-prediction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialize prediction<a class="anchor-link" href="#Initialize-prediction"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Your data source for batch prediction can be GCS or BigQuery. For this tutorial, you can use <a href="https://storage.cloud.google.com/rostam-193618-tutorial/automl-tables-v1beta1/iris_batch_prediction_input.csv">iris_batch_prediction_input.csv</a> as input source. Create a GCS bucket and upload the file into your bucket. Some of the lines in the batch prediction input file are intentionally left missing some values. The AutoML Tables logs the errors in the <code>errors.csv</code> file.</p>
+<p><strong>NOTE:</strong> The client library has a bug. If the following cell returns a <code>TypeError: Could not convert Any to BatchPredictResult</code> error, ignore it. The batch prediction output file(s) will be updated to the GCS bucket that you set in the preceding cells.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Start batch prediction { vertical-output: true, output-height: 200 }</span>
+
+<span class="n">batch_predict_gcs_input_uris</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'gs://automl-tables-data/iris_batch_prediction_input.csv'</span><span class="p">,]</span> <span class="c1">#@param</span>
+<span class="n">batch_predict_gcs_output_uri_prefix</span> <span class="o">=</span> <span class="s1">'gs://automl-tables-pred'</span> <span class="c1">#@param {type:'string'}</span>
+<span class="c1"># Define input source.</span>
+<span class="n">batch_prediction_input_source</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'gcs_source'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'input_uris'</span><span class="p">:</span> <span class="n">batch_predict_gcs_input_uris</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1"># Define output target.</span>
+<span class="n">batch_prediction_output_target</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'gcs_destination'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s1">'output_uri_prefix'</span><span class="p">:</span> <span class="n">batch_predict_gcs_output_uri_prefix</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">batch_predict_response</span> <span class="o">=</span> <span class="n">prediction_client</span><span class="o">.</span><span class="n">batch_predict</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span> <span class="n">batch_prediction_input_source</span><span class="p">,</span> <span class="n">batch_prediction_output_target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Batch prediction operation: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">batch_predict_response</span><span class="o">.</span><span class="n">operation</span><span class="p">))</span>
+<span class="c1"># Wait until batch prediction is done.</span>
+<span class="n">batch_predict_result</span> <span class="o">=</span> <span class="n">batch_predict_response</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">batch_predict_response</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_predict_response</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="rafaelsf80/notebooks"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/notebooks/googlecloud/automl/2020/09/05/automl-tables.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/notebooks/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/notebooks/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/notebooks/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Una lista de notebooks en español sobre inteligencia artificial y aprendizaje profundo.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rafaelsf80" title="rafaelsf80"><svg class="svg-icon grey"><use xlink:href="/notebooks/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/rafaelsf80" title="rafaelsf80"><svg class="svg-icon grey"><use xlink:href="/notebooks/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
