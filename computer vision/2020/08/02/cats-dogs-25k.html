@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CNNs: perros y gatos con Data augmentation | Notebooks de Aprendizaje Profundo en Español</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="CNNs: perros y gatos con Data augmentation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos" />
+<meta property="og:description" content="(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/kaggle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos","@type":"BlogPosting","headline":"CNNs: perros y gatos con Data augmentation","dateModified":"2020-08-02T00:00:00-05:00","datePublished":"2020-08-02T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/kaggle.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CNNs: perros y gatos con Data augmentation | Notebooks de Aprendizaje Profundo en Español</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="CNNs: perros y gatos con Data augmentation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos" />
+<meta property="og:description" content="(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/kaggle.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos","@type":"BlogPosting","headline":"CNNs: perros y gatos con Data augmentation","dateModified":"2020-08-02T00:00:00-05:00","datePublished":"2020-08-02T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/kaggle.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/notebooks/">Notebooks de Aprendizaje Profundo en Español</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/notebooks/about/">About Me</a><a class="page-link" href="/notebooks/search/">Search</a><a class="page-link" href="/notebooks/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">CNNs: perros y gatos con Data augmentation</h1><p class="page-description">(SPANISH) Resolucion de la competicion Kaggle de lenguaje de signos</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-08-02T00:00:00-05:00" itemprop="datePublished">
+        Aug 2, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/notebooks/categories/#Computer Vision">Computer Vision</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-08-02-cats-dogs-25k.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/notebooks/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-08-02-cats-dogs-25k.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-08-02-cats-dogs-25k.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#NOTE:">NOTE: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-08-02-cats-dogs-25k.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Introducción</span>
+<span class="n">Se</span> <span class="n">va</span> <span class="n">a</span> <span class="n">resolver</span> <span class="n">la</span> <span class="n">competición</span> <span class="n">de</span> <span class="n">Kaggle</span> <span class="n">expuesta</span> <span class="p">[</span><span class="n">aqui</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">kaggle</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">dogs</span><span class="o">-</span><span class="n">vs</span><span class="o">-</span><span class="n">cats</span><span class="o">/</span><span class="n">data</span><span class="p">)</span><span class="o">.</span>
+<span class="n">Se</span> <span class="n">usarán</span> <span class="mi">25</span><span class="p">,</span><span class="mi">000</span> <span class="n">imágenes</span> <span class="n">de</span> <span class="n">perros</span> <span class="n">y</span> <span class="n">gatos</span><span class="o">.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ATTENTION: Please do not alter any of the provided code in the exercise. Only add your own code where indicated</span>
+<span class="c1"># ATTENTION: Please do not add or remove any cells in the exercise. The grader will check specific cells based on the cell position.</span>
+<span class="c1"># ATTENTION: Please use the provided epoch values when training.</span>
+
+<span class="c1"># In this exercise you will train a CNN on the FULL Cats-v-dogs dataset</span>
+<span class="c1"># This will require you doing a lot of data preprocessing because</span>
+<span class="c1"># the dataset isn't split into training and validation for you</span>
+<span class="c1"># This code block has all the required inputs</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
+<span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">copyfile</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getcwd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>kaggle competitions download -c dogs-vs-cats
+<span class="c1">#shutil.rmtree('/tmp')</span>
+
+<span class="c1">#local_zip = path_cats_and_dogs</span>
+<span class="c1">#zip_ref = zipfile.ZipFile(local_zip, 'r')</span>
+<span class="c1">#zip_ref.extractall('/tmp')</span>
+<span class="c1">#zip_ref.close()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Warning: Your Kaggle API key is readable by other users on this system! To fix this, you can run 'chmod 600 /Users/rafaelsanchez/.kaggle/kaggle.json'
+Downloading dogs-vs-cats.zip to /Users/rafaelsanchez/git/notebooks/_notebooks
+100%|████████████████████████████████████████| 812M/812M [14:52&lt;00:00, 1.26MB/s]
+100%|█████████████████████████████████████████| 812M/812M [14:52&lt;00:00, 954kB/s]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/tmp/PetImages/Cat/'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/tmp/PetImages/Dog/'</span><span class="p">)))</span>
+
+<span class="c1"># Expected Output:</span>
+<span class="c1"># 1500</span>
+<span class="c1"># 1500</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1500
+1500
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use os.mkdir to create your directories</span>
+<span class="c1"># You will need a directory for cats-v-dogs, and subdirectories for training</span>
+<span class="c1"># and testing. These in turn will need subdirectories for 'cats' and 'dogs'</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'/tmp'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs/training'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs/testing'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs/training/dogs'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs/training/cats'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs/testing/dogs'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'cats-v-dogs/testing/cats'</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write a python function called split_data which takes</span>
+<span class="c1"># a SOURCE directory containing the files</span>
+<span class="c1"># a TRAINING directory that a portion of the files will be copied to</span>
+<span class="c1"># a TESTING directory that a portion of the files will be copie to</span>
+<span class="c1"># a SPLIT SIZE to determine the portion</span>
+<span class="c1"># The files should also be randomized, so that the training set is a random</span>
+<span class="c1"># X% of the files, and the test set is the remaining files</span>
+<span class="c1"># SO, for example, if SOURCE is PetImages/Cat, and SPLIT SIZE is .9</span>
+<span class="c1"># Then 90% of the images in PetImages/Cat will be copied to the TRAINING dir</span>
+<span class="c1"># and 10% of the images will be copied to the TESTING dir</span>
+<span class="c1"># Also -- All images should be checked, and if they have a zero file length,</span>
+<span class="c1"># they will not be copied over</span>
+<span class="c1">#</span>
+<span class="c1"># os.listdir(DIRECTORY) gives you a listing of the contents of that directory</span>
+<span class="c1"># os.path.getsize(PATH) gives you the size of the file</span>
+<span class="c1"># copyfile(source, destination) copies a file from source to destination</span>
+<span class="c1"># random.sample(list, len(list)) shuffles a list</span>
+<span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">SOURCE</span><span class="p">,</span> <span class="n">TRAINING</span><span class="p">,</span> <span class="n">TESTING</span><span class="p">,</span> <span class="n">SPLIT_SIZE</span><span class="p">):</span>
+<span class="c1"># YOUR CODE STARTS HERE</span>
+    <span class="n">lista_ficheros</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">SOURCE</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">lista_ficheros</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista_ficheros</span><span class="p">))</span>
+    <span class="n">lista_ficheros_training</span> <span class="o">=</span> <span class="n">lista_ficheros</span><span class="p">[:</span><span class="nb">round</span><span class="p">(</span><span class="n">SPLIT_SIZE</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">lista_ficheros</span><span class="p">))]</span>
+    <span class="n">lista_ficheros_testing</span> <span class="o">=</span> <span class="n">lista_ficheros</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">SPLIT_SIZE</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">lista_ficheros</span><span class="p">)):]</span>
+
+    <span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="n">lista_ficheros_training</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">SOURCE</span><span class="o">+</span><span class="n">fichero</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">copyfile</span><span class="p">(</span><span class="n">SOURCE</span><span class="o">+</span><span class="n">fichero</span><span class="p">,</span> <span class="n">TRAINING</span><span class="o">+</span><span class="n">fichero</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="n">lista_ficheros_testing</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">SOURCE</span><span class="o">+</span><span class="n">fichero</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">copyfile</span><span class="p">(</span><span class="n">SOURCE</span><span class="o">+</span><span class="n">fichero</span><span class="p">,</span> <span class="n">TESTING</span><span class="o">+</span><span class="n">fichero</span><span class="p">)</span>
+<span class="c1"># YOUR CODE ENDS HERE</span>
+
+
+<span class="n">CAT_SOURCE_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/PetImages/Cat/"</span>
+<span class="n">TRAINING_CATS_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/cats-v-dogs/training/cats/"</span>
+<span class="n">TESTING_CATS_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/cats-v-dogs/testing/cats/"</span>
+<span class="n">DOG_SOURCE_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/PetImages/Dog/"</span>
+<span class="n">TRAINING_DOGS_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/cats-v-dogs/training/dogs/"</span>
+<span class="n">TESTING_DOGS_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/cats-v-dogs/testing/dogs/"</span>
+
+<span class="n">split_size</span> <span class="o">=</span> <span class="o">.</span><span class="mi">9</span>
+<span class="n">split_data</span><span class="p">(</span><span class="n">CAT_SOURCE_DIR</span><span class="p">,</span> <span class="n">TRAINING_CATS_DIR</span><span class="p">,</span> <span class="n">TESTING_CATS_DIR</span><span class="p">,</span> <span class="n">split_size</span><span class="p">)</span>
+<span class="n">split_data</span><span class="p">(</span><span class="n">DOG_SOURCE_DIR</span><span class="p">,</span> <span class="n">TRAINING_DOGS_DIR</span><span class="p">,</span> <span class="n">TESTING_DOGS_DIR</span><span class="p">,</span> <span class="n">split_size</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/tmp/cats-v-dogs/training/cats/'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/tmp/cats-v-dogs/training/dogs/'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/tmp/cats-v-dogs/testing/cats/'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'/tmp/cats-v-dogs/testing/dogs/'</span><span class="p">)))</span>
+
+<span class="c1"># Expected output:</span>
+<span class="c1"># 1350</span>
+<span class="c1"># 1350</span>
+<span class="c1"># 150</span>
+<span class="c1"># 150</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1350
+1350
+150
+150
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Usamos 3 capas convolucionales</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> 
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span> 
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="c1"># Aplanamos para entrar en una capa densa</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span> 
+    <span class="c1"># 512 unidades</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span> 
+    <span class="c1"># activation sigmoid porque es una única salida (1 si gato, 0 si perro)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'sigmoid'</span><span class="p">)</span>  <span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">RMSprop</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="s1">'binary_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'acc'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NOTE:">
+<a class="anchor" href="#NOTE:" aria-hidden="true"><span class="octicon octicon-link"></span></a>NOTE:<a class="anchor-link" href="#NOTE:"> </a>
+</h1>
+<p>In the cell below you <strong>MUST</strong> use a batch size of 10 (<code>batch_size=10</code>) for the <code>train_generator</code> and the <code>validation_generator</code>. Using a batch size greater than 10 will exceed memory limits on the Coursera platform.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TRAINING_DIR</span> <span class="o">=</span> <span class="s1">'/tmp/cats-v-dogs/training/'</span>
+<span class="n">train_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span> <span class="n">rescale</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">255.</span> <span class="p">)</span>
+
+<span class="c1"># NOTE: YOU MUST USE A BATCH SIZE OF 10 (batch_size=10) FOR THE </span>
+<span class="c1"># TRAIN GENERATOR.</span>
+<span class="n">train_generator</span> <span class="o">=</span> <span class="n">train_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="n">TRAINING_DIR</span><span class="p">,</span>
+                                                    <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                                    <span class="n">class_mode</span><span class="o">=</span><span class="s1">'binary'</span><span class="p">,</span>
+                                                    <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span> 
+
+<span class="n">VALIDATION_DIR</span> <span class="o">=</span> <span class="s1">'/tmp/cats-v-dogs/testing/'</span>
+<span class="n">validation_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span> <span class="n">rescale</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">255.</span> <span class="p">)</span>
+
+<span class="c1"># NOTE: YOU MUST USE A BACTH SIZE OF 10 (batch_size=10) FOR THE </span>
+<span class="c1"># VALIDATION GENERATOR.</span>
+<span class="n">validation_generator</span> <span class="o">=</span>  <span class="n">validation_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span><span class="n">VALIDATION_DIR</span><span class="p">,</span>
+                                                         <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                                         <span class="n">class_mode</span>  <span class="o">=</span> <span class="s1">'binary'</span><span class="p">,</span>
+                                                         <span class="n">target_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span>
+
+
+
+<span class="c1"># Expected Output:</span>
+<span class="c1"># Found 2700 images belonging to 2 classes.</span>
+<span class="c1"># Found 300 images belonging to 2 classes.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Found 2700 images belonging to 2 classes.
+Found 300 images belonging to 2 classes.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">train_generator</span><span class="p">,</span>
+                              <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                              <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/2
+270/270 [==============================] - 41s 150ms/step - loss: 0.5252 - acc: 0.7322 - val_loss: 0.6337 - val_acc: 0.6700
+Epoch 2/2
+270/270 [==============================] - 40s 149ms/step - loss: 0.4512 - acc: 0.7930 - val_loss: 0.5766 - val_acc: 0.7333
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># PLOT LOSS AND ACCURACY</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">matplotlib.image</span>  <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#-----------------------------------------------------------</span>
+<span class="c1"># Retrieve a list of list results on training and test data</span>
+<span class="c1"># sets for each training epoch</span>
+<span class="c1">#-----------------------------------------------------------</span>
+<span class="n">acc</span><span class="o">=</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'acc'</span><span class="p">]</span>
+<span class="n">val_acc</span><span class="o">=</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'val_acc'</span><span class="p">]</span>
+<span class="n">loss</span><span class="o">=</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'loss'</span><span class="p">]</span>
+<span class="n">val_loss</span><span class="o">=</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">'val_loss'</span><span class="p">]</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">acc</span><span class="p">))</span> <span class="c1"># Get number of epochs</span>
+
+<span class="c1">#------------------------------------------------</span>
+<span class="c1"># Plot training and validation accuracy per epoch</span>
+<span class="c1">#------------------------------------------------</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="s2">"Training Accuracy"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">val_acc</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s2">"Validation Accuracy"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Training and validation accuracy'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="c1">#------------------------------------------------</span>
+<span class="c1"># Plot training and validation loss per epoch</span>
+<span class="c1">#------------------------------------------------</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="s2">"Training Loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s2">"Validation Loss"</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Training and validation loss'</span><span class="p">)</span>
+
+<span class="c1"># Desired output. Charts with training and validation metrics. No crash :)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5, 1.0, 'Training and validation loss')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="rafaelsf80/notebooks"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/notebooks/computer%20vision/2020/08/02/cats-dogs-25k.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/notebooks/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/notebooks/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/notebooks/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Una lista de notebooks en español sobre inteligencia artificial y aprendizaje profundo.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rafaelsf80" title="rafaelsf80"><svg class="svg-icon grey"><use xlink:href="/notebooks/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/rafaelsf80" title="rafaelsf80"><svg class="svg-icon grey"><use xlink:href="/notebooks/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
