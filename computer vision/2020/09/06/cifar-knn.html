@@ -3,12 +3,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Clasificador de CIFAR-10 usando kNN | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy" />
+<meta property="og:title" content="Clasificador de CIFAR-10 usando kNN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors" />
-<meta property="og:description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors" />
+<meta name="description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
+<meta property="og:description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -16,15 +16,15 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-06T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"(SPANISH) Clasificación de imágenes con k Nearest Neighbors","@type":"BlogPosting","headline":"Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
+{"description":"(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy","@type":"BlogPosting","headline":"Clasificador de CIFAR-10 usando kNN","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Clasificador de CIFAR-10 usando kNN | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy" />
+<meta property="og:title" content="Clasificador de CIFAR-10 usando kNN" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors" />
-<meta property="og:description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors" />
+<meta name="description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
+<meta property="og:description" content="(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-06T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"(SPANISH) Clasificación de imágenes con k Nearest Neighbors","@type":"BlogPosting","headline":"Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
+{"description":"(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy","@type":"BlogPosting","headline":"Clasificador de CIFAR-10 usando kNN","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +87,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Clasificador de CIFAR-10 usando kNN y la clase experimental tf.numpy</h1><p class="page-description">(SPANISH) Clasificación de imágenes con k Nearest Neighbors</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-06T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Clasificador de CIFAR-10 usando kNN</h1><p class="page-description">(SPANISH) Clasificación de imágenes con k Nearest Neighbors y la clase experimental tf.numpy</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-06T00:00:00-05:00" itemprop="datePublished">
         Sep 6, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -134,15 +134,11 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#1.-Introducción">1. Introducción </a></li>
 <li class="toc-entry toc-h2"><a href="#2.-Setup">2. Setup </a></li>
-<li class="toc-entry toc-h2"><a href="#3.-Carga-de-datos">3. Carga de datos </a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#Visualización">Visualización </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#3.-Preparar-datos">3. Preparar datos </a></li>
-<li class="toc-entry toc-h2"><a href="#4.-Construcción-del-modelo">4. Construcción del modelo </a></li>
-<li class="toc-entry toc-h2"><a href="#5.-Entrenamiento">5. Entrenamiento </a></li>
-<li class="toc-entry toc-h2"><a href="#6.-Evaluación">6. Evaluación </a></li>
+<li class="toc-entry toc-h2"><a href="#3.-Carga-de-datos">3. Carga de datos </a></li>
+<li class="toc-entry toc-h2"><a href="#4.-Preparar-datos">4. Preparar datos </a></li>
+<li class="toc-entry toc-h2"><a href="#5.-Construcción-del-modelo">5. Construcción del modelo </a></li>
+<li class="toc-entry toc-h2"><a href="#6.-Entrenamiento">6. Entrenamiento </a></li>
+<li class="toc-entry toc-h2"><a href="#7.-Evaluación">7. Evaluación </a></li>
 </ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
@@ -177,7 +173,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <h2 id="2.-Setup">
 <a class="anchor" href="#2.-Setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Setup<a class="anchor-link" href="#2.-Setup"> </a>
 </h2>
-<p>Importamos las librerías que vamos a usar. usaremos la función experimental <code>tensorflow.numpy</code> para aprovechar las GPUs durante operaciones con funciones numpy (por ejemplo, en la inferencia):</p>
+<p>Importamos las librerías que vamos a usar. usaremos la función experimental <code>tensorflow.numpy</code> para aprovechar las GPUs durante operaciones con funciones <code>numpy</code> (por ejemplo, durante la inferencia):</p>
 
 </div>
 </div>
@@ -282,9 +278,6 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Visualización">
-<a class="anchor" href="#Visualizaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualización<a class="anchor-link" href="#Visualizaci%C3%B3n"> </a>
-</h3>
 <p>Visualizamos los primeros 25 elementos del dataset:</p>
 
 </div>
@@ -323,8 +316,8 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.-Preparar-datos">
-<a class="anchor" href="#3.-Preparar-datos" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Preparar datos<a class="anchor-link" href="#3.-Preparar-datos"> </a>
+<h2 id="4.-Preparar-datos">
+<a class="anchor" href="#4.-Preparar-datos" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Preparar datos<a class="anchor-link" href="#4.-Preparar-datos"> </a>
 </h2>
 <p>El set de entrenamiento es de tamaño <code>train_images.shape=(50000,32,32,3)</code> y sus etiquetas <code>train_labels.shape=(50000, 1)</code>. Aplanamos el set de entrenamiento y también el de pruebas:</p>
 
@@ -352,8 +345,8 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.-Construcción-del-modelo">
-<a class="anchor" href="#4.-Construcci%C3%B3n-del-modelo" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Construcción del modelo<a class="anchor-link" href="#4.-Construcci%C3%B3n-del-modelo"> </a>
+<h2 id="5.-Construcción-del-modelo">
+<a class="anchor" href="#5.-Construcci%C3%B3n-del-modelo" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Construcción del modelo<a class="anchor-link" href="#5.-Construcci%C3%B3n-del-modelo"> </a>
 </h2>
 </div>
 </div>
@@ -387,6 +380,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
       <span class="c1"># using the L1 distance (sum of absolute value differences)</span>
       <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">min_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="c1"># get the index with smallest distance</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">"Training </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">num_test</span><span class="p">))</span>
       <span class="n">Ypred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="c1"># predict the label of the nearest example</span>
 
     <span class="k">return</span> <span class="n">Ypred</span>
@@ -410,8 +404,8 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="5.-Entrenamiento">
-<a class="anchor" href="#5.-Entrenamiento" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Entrenamiento<a class="anchor-link" href="#5.-Entrenamiento"> </a>
+<h2 id="6.-Entrenamiento">
+<a class="anchor" href="#6.-Entrenamiento" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Entrenamiento<a class="anchor-link" href="#6.-Entrenamiento"> </a>
 </h2>
 <p>Lanzamos el entrenamiento  usando k Nearest Neighbors (kNN):</p>
 
@@ -443,8 +437,8 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="6.-Evaluación">
-<a class="anchor" href="#6.-Evaluaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Evaluación<a class="anchor-link" href="#6.-Evaluaci%C3%B3n"> </a>
+<h2 id="7.-Evaluación">
+<a class="anchor" href="#7.-Evaluaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Evaluación<a class="anchor-link" href="#7.-Evaluaci%C3%B3n"> </a>
 </h2>
 </div>
 </div>
