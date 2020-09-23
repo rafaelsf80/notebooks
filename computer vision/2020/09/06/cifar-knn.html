@@ -3,12 +3,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Clasificador de CIFAR-10 usando kNN | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Clasificador kNN para CIFAR-10 | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Clasificador de CIFAR-10 usando kNN" />
+<meta property="og:title" content="Clasificador kNN para CIFAR-10" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
-<meta property="og:description" content="Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
+<meta name="description" content="Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford." />
+<meta property="og:description" content="Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford." />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -16,15 +16,15 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-06T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy","@type":"BlogPosting","headline":"Clasificador de CIFAR-10 usando kNN","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
+{"description":"Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford.","@type":"BlogPosting","headline":"Clasificador kNN para CIFAR-10","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Clasificador de CIFAR-10 usando kNN | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Clasificador kNN para CIFAR-10 | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Clasificador de CIFAR-10 usando kNN" />
+<meta property="og:title" content="Clasificador kNN para CIFAR-10" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
-<meta property="og:description" content="Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy" />
+<meta name="description" content="Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford." />
+<meta property="og:description" content="Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford." />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-06T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy","@type":"BlogPosting","headline":"Clasificador de CIFAR-10 usando kNN","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
+{"description":"Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford.","@type":"BlogPosting","headline":"Clasificador kNN para CIFAR-10","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-knn.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +87,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Clasificador de CIFAR-10 usando kNN</h1><p class="page-description">Clasificador de imágenes con k Nearest Neighbors y la clase experimental tf.numpy</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-06T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Clasificador kNN para CIFAR-10</h1><p class="page-description">Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy. Laboratorio 1 del curso CS231n de Stanford.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-06T00:00:00-05:00" itemprop="datePublished">
         Sep 6, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -161,7 +161,9 @@ window.onload = wrap_img;
 <a class="anchor" href="#1.-Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Introducción<a class="anchor-link" href="#1.-Introducci%C3%B3n"> </a>
 </h2>
 <p>Este ejemplo muestra cómo hacer una clasificación de imágenes usando Machine Learning clásico, sin usar una red convolucional. 
-Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia de pixels.</p>
+Se va a usar k-Nearest Neighbor y una precisión básica basada en diferencia de pixels. 
+Instrucciones originales del <a href="https://cs231n.github.io/classification/">curso de Stanford CS231</a>.<br>
+Este ejemplo se ha probado y funciona en Colab.</p>
 
 </div>
 </div>
@@ -206,6 +208,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow.experimental.numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
 
 <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">models</span>
 </pre></div>
@@ -234,6 +237,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"All logical devices:"</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_logical_devices</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"All physical devices:"</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Num GPUs Available: "</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">'GPU'</span><span class="p">)))</span>
 </pre></div>
 
     </div>
@@ -262,6 +266,15 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">cifar10</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1"># Usando scikit-learn, Hacemos shuffle y usamos sólo 2000 imágenes para entrenar y 100 para test</span>
+<span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
+<span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span>
+
+<span class="n">train_images</span> <span class="o">=</span> <span class="n">train_images</span><span class="p">[:</span><span class="mi">2000</span><span class="p">]</span>
+<span class="n">train_labels</span> <span class="o">=</span> <span class="n">train_labels</span><span class="p">[:</span><span class="mi">2000</span><span class="p">]</span>
+<span class="n">test_images</span> <span class="o">=</span> <span class="n">test_images</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">test_labels</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
 
 <span class="c1"># Normalizamos valores de píxeles entre 0 y 1</span>
 <span class="n">train_images</span><span class="p">,</span> <span class="n">test_images</span> <span class="o">=</span> <span class="n">train_images</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">test_images</span> <span class="o">/</span> <span class="mf">255.</span>
@@ -318,7 +331,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <h2 id="4.-Preparar-datos">
 <a class="anchor" href="#4.-Preparar-datos" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Preparar datos<a class="anchor-link" href="#4.-Preparar-datos"> </a>
 </h2>
-<p>El set de entrenamiento es de tamaño <code>train_images.shape=(50000,32,32,3)</code> y sus etiquetas <code>train_labels.shape=(50000, 1)</code>. Aplanamos el set de entrenamiento y también el de pruebas:</p>
+<p>El set de entrenamiento original era de tamaño <code>train_images.shape=(50000,32,32,3)</code> y sus etiquetas <code>train_labels.shape=(50000, 1)</code>. Pero usamos uno más pequeño de 2000. Aplanamos el set de entrenamiento y también el de pruebas:</p>
 
 </div>
 </div>
@@ -330,8 +343,8 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_images_rows</span> <span class="o">=</span> <span class="n">train_images</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">train_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># train_images_rows.shape 50000 x 3072</span>
-<span class="n">test_images_rows</span> <span class="o">=</span> <span class="n">test_images</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">test_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># test_images_rows.shape 10000 x 3072</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_images_rows</span> <span class="o">=</span> <span class="n">train_images</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">train_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># train_images_rows.shape 2000 x 3072</span>
+<span class="n">test_images_rows</span> <span class="o">=</span> <span class="n">test_images</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">test_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># test_images_rows.shape 100 x 3072</span>
 </pre></div>
 
     </div>
@@ -347,7 +360,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <h2 id="5.-Construcción-del-modelo">
 <a class="anchor" href="#5.-Construcci%C3%B3n-del-modelo" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Construcción del modelo<a class="anchor-link" href="#5.-Construcci%C3%B3n-del-modelo"> </a>
 </h2>
-<p>Para la predicción, se compara una imagen de test con todas las de entrenamiento, y se devuelve la de menor diferencia (distancia L1)</p>
+<p>Para la predicción, se compara una imagen de test con todas las de entrenamiento, y se devuelve la de menor diferencia (distancia L1: resta de valores de pixels)</p>
 
 </div>
 </div>
@@ -373,7 +386,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
     <span class="sd">""" X is N x D where each row is an example we wish to predict label for """</span>
     <span class="n">num_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1"># lets make sure that the output type matches the input type</span>
-    <span class="n">Ypred</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_test</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">Ypred</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1"># loop over all test rows</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_test</span><span class="p">):</span>
@@ -381,8 +394,9 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
       <span class="c1"># using the L1 distance (sum of absolute value differences)</span>
       <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">min_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="c1"># get the index with smallest distance</span>
-      <span class="n">Ypred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="c1"># predict the label of the nearest example</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s2">"Test image </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">num_test</span><span class="p">,</span> <span class="n">Ypred</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+      <span class="n">Ypred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="p">[</span><span class="n">min_index</span><span class="p">])</span> <span class="c1"># predict the label of the nearest example</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">"Test image </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">num_test</span><span class="p">,</span> <span class="n">Ypred</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
 
     <span class="k">return</span> <span class="n">Ypred</span>
 </pre></div>
@@ -397,7 +411,15 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<p>Para la predicción, se puede usar la distancia L1 ó L2 (cuadrática). Para la diferencia cuadrática, simplemente cambiar la lína anterior por la siguiente:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>distances = np.sqrt(np.sum(np.square(self.Xtr - X[i,:]), axis = 1))</code></p>
 
 </div>
 </div>
@@ -425,32 +447,7 @@ Se va a usar k Nearest Neighbors y una precisión básica basada en diferencia d
 <span class="n">Yte_predict</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_images_rows</span><span class="p">)</span> <span class="c1"># predict labels on the test images</span>
 <span class="c1"># and now print the classification accuracy, which is the average number</span>
 <span class="c1"># of examples that are correctly predicted (i.e. label matches)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'accuracy: </span><span class="si">%f</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Yte_predict</span> <span class="o">==</span> <span class="n">test_labels</span><span class="p">)</span> <span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Para la predicción, se puede usar la distancia L1 ó L2 (cuadrática). Para la diferencia cuadrática:</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'accuracy: </span><span class="si">%f</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Yte_predict</span><span class="p">)</span> <span class="o">==</span> <span class="n">test_labels</span><span class="p">)</span> <span class="p">))</span>
 </pre></div>
 
     </div>
