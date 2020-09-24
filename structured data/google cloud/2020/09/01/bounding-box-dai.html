@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Extracción de campos de formularios con Google Document AI" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI" />
-<meta property="og:description" content="Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI" />
+<meta name="description" content="Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI" />
+<meta property="og:description" content="Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -16,15 +16,15 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-01T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI","@type":"BlogPosting","headline":"Extracción de campos de formularios con Google Document AI","dateModified":"2020-09-01T00:00:00-05:00","datePublished":"2020-09-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/googlecloud.png","url":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html"},"@context":"https://schema.org"}</script>
+{"description":"Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI","@type":"BlogPosting","headline":"Extracción de campos de formularios con Google Document AI","dateModified":"2020-09-01T00:00:00-05:00","datePublished":"2020-09-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/googlecloud.png","url":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Extracción de campos de formularios con Google Document AI | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Extracción de campos de formularios con Google Document AI" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI" />
-<meta property="og:description" content="Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI" />
+<meta name="description" content="Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI" />
+<meta property="og:description" content="Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-01T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI","@type":"BlogPosting","headline":"Extracción de campos de formularios con Google Document AI","dateModified":"2020-09-01T00:00:00-05:00","datePublished":"2020-09-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/googlecloud.png","url":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html"},"@context":"https://schema.org"}</script>
+{"description":"Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI","@type":"BlogPosting","headline":"Extracción de campos de formularios con Google Document AI","dateModified":"2020-09-01T00:00:00-05:00","datePublished":"2020-09-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/googlecloud.png","url":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/structured%20data/google%20cloud/2020/09/01/bounding-box-dai.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +87,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Extracción de campos de formularios con Google Document AI</h1><p class="page-description">Análisis de documentos PDF y extracción de entidades de formularios con Google Document AI</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-01T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Extracción de campos de formularios con Google Document AI</h1><p class="page-description">Análisis de documentos PDF y extracción de entidades de formularios (Form parser)con Google Document AI</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-01T00:00:00-05:00" itemprop="datePublished">
         Sep 1, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -135,23 +135,12 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#Introducción">Introducción </a></li>
-<li class="toc-entry toc-h1"><a href="#Instalación">Instalación </a>
-<ul>
+<li class="toc-entry toc-h2"><a href="#1.-Introducción">1. Introducción </a></li>
+<li class="toc-entry toc-h2"><a href="#2.-Instalación">2. Instalación </a></li>
 <li class="toc-entry toc-h2"><a href="#Configurar-proyecto-Google-Cloud">Configurar proyecto Google Cloud </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#Llamada-al-Document-AI-API">Llamada al Document AI API </a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#Función-para-parsear-la-respuesta-del-API">Función para parsear la respuesta del API </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#Impresión-de-resultados">Impresión de resultados </a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#Descarga-del-archivo-y-conversión-a-jpg">Descarga del archivo y conversión a jpg </a></li>
-<li class="toc-entry toc-h2"><a href="#Imprimir-entidades-y-dibujar-las-cajas">Imprimir entidades y dibujar las cajas </a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h2"><a href="#3.-Llamada-al-API-de-Document-AI-(Form-parser)">3. Llamada al API de Document AI (Form parser) </a></li>
+<li class="toc-entry toc-h2"><a href="#4.-Función-para-parsear-la-respuesta-del-API">4. Función para parsear la respuesta del API </a></li>
+<li class="toc-entry toc-h2"><a href="#5.-Impresión-de-resultados">5. Impresión de resultados </a></li>
 </ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
@@ -171,9 +160,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introducción">
-<a class="anchor" href="#Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introducción<a class="anchor-link" href="#Introducci%C3%B3n"> </a>
-</h1>
+<h2 id="1.-Introducción">
+<a class="anchor" href="#1.-Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Introducción<a class="anchor-link" href="#1.-Introducci%C3%B3n"> </a>
+</h2>
 <p>Este ejemplo muestra cómo analizar un formulario (en formato pdf) y extraer ciertas entidades, como nombre, dirección, teléfono, .... como lista en python y como cajas con coordenadas X, Y para resaltarlos en el propio pdf.</p>
 <p>Contenido original en inglés y adaptación de <a href="https://bit.ly/docai-colab">aqui</a></p>
 
@@ -183,9 +172,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Instalación">
-<a class="anchor" href="#Instalaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instalación<a class="anchor-link" href="#Instalaci%C3%B3n"> </a>
-</h1>
+<h2 id="2.-Instalación">
+<a class="anchor" href="#2.-Instalaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Instalación<a class="anchor-link" href="#2.-Instalaci%C3%B3n"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -533,9 +522,9 @@ created key [0e4877587f9cd4a19ddbdf48b31cfa3f85b5c336] of type [json] as [./key.
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Llamada-al-Document-AI-API">
-<a class="anchor" href="#Llamada-al-Document-AI-API" aria-hidden="true"><span class="octicon octicon-link"></span></a>Llamada al Document AI API<a class="anchor-link" href="#Llamada-al-Document-AI-API"> </a>
-</h1>
+<h2 id="3.-Llamada-al-API-de-Document-AI-(Form-parser)">
+<a class="anchor" href="#3.-Llamada-al-API-de-Document-AI-(Form-parser)" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Llamada al API de Document AI (Form parser)<a class="anchor-link" href="#3.-Llamada-al-API-de-Document-AI-(Form-parser)"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -783,8 +772,8 @@ field_value {
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Función-para-parsear-la-respuesta-del-API">
-<a class="anchor" href="#Funci%C3%B3n-para-parsear-la-respuesta-del-API" aria-hidden="true"><span class="octicon octicon-link"></span></a>Función para parsear la respuesta del API<a class="anchor-link" href="#Funci%C3%B3n-para-parsear-la-respuesta-del-API"> </a>
+<h2 id="4.-Función-para-parsear-la-respuesta-del-API">
+<a class="anchor" href="#4.-Funci%C3%B3n-para-parsear-la-respuesta-del-API" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Función para parsear la respuesta del API<a class="anchor-link" href="#4.-Funci%C3%B3n-para-parsear-la-respuesta-del-API"> </a>
 </h2>
 </div>
 </div>
@@ -889,13 +878,10 @@ aches, chills, tired
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Impresión-de-resultados">
-<a class="anchor" href="#Impresi%C3%B3n-de-resultados" aria-hidden="true"><span class="octicon octicon-link"></span></a>Impresión de resultados<a class="anchor-link" href="#Impresi%C3%B3n-de-resultados"> </a>
-</h1>
-<h2 id="Descarga-del-archivo-y-conversión-a-jpg">
-<a class="anchor" href="#Descarga-del-archivo-y-conversi%C3%B3n-a-jpg" aria-hidden="true"><span class="octicon octicon-link"></span></a>Descarga del archivo y conversión a jpg<a class="anchor-link" href="#Descarga-del-archivo-y-conversi%C3%B3n-a-jpg"> </a>
+<h2 id="5.-Impresión-de-resultados">
+<a class="anchor" href="#5.-Impresi%C3%B3n-de-resultados" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Impresión de resultados<a class="anchor-link" href="#5.-Impresi%C3%B3n-de-resultados"> </a>
 </h2>
-<p>This way, we can draw on it here in this Jupyter Notebook</p>
+<p>Descargamos el archivo y convertimos a jpg, para dibujar las cajas.</p>
 
 </div>
 </div>
@@ -920,9 +906,8 @@ aches, chills, tired
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Imprimir-entidades-y-dibujar-las-cajas">
-<a class="anchor" href="#Imprimir-entidades-y-dibujar-las-cajas" aria-hidden="true"><span class="octicon octicon-link"></span></a>Imprimir entidades y dibujar las cajas<a class="anchor-link" href="#Imprimir-entidades-y-dibujar-las-cajas"> </a>
-</h2>
+<p>Imprimimos entidades y dibujamos las cajas alrededor:</p>
+
 </div>
 </div>
 </div>
