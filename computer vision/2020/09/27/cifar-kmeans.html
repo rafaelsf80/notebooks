@@ -9,14 +9,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10." />
 <meta property="og:description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10." />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/stanford.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-09-06T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-09-27T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
+{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10","dateModified":"2020-09-27T00:00:00-05:00","datePublished":"2020-09-27T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Agrupamiento k-Means para CIFAR-10 | Notebooks de Aprendizaje Profundo en Español</title>
@@ -25,14 +25,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10." />
 <meta property="og:description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10." />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/stanford.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-09-06T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-09-27T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10","dateModified":"2020-09-06T00:00:00-05:00","datePublished":"2020-09-06T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
+{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10","dateModified":"2020-09-27T00:00:00-05:00","datePublished":"2020-09-27T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,8 +87,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Agrupamiento k-Means para CIFAR-10</h1><p class="page-description">Agrupamiento (clustering) basado en k-Means para CIFAR-10.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-06T00:00:00-05:00" itemprop="datePublished">
-        Sep 6, 2020
+    <h1 class="post-title p-name" itemprop="name headline">Agrupamiento k-Means para CIFAR-10</h1><p class="page-description">Agrupamiento (clustering) basado en k-Means para CIFAR-10.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-27T00:00:00-05:00" itemprop="datePublished">
+        Sep 27, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -111,19 +111,19 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-wrap flex-justify-end">
           <div class="px-2">
 
-    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-09-06-cifar-kmeans.ipynb" role="button" target="_blank">
+    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-09-27-cifar-kmeans.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/notebooks/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-09-06-cifar-kmeans.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-09-27-cifar-kmeans.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-09-06-cifar-kmeans.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-09-27-cifar-kmeans.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -142,7 +142,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2020-09-06-cifar-kmeans.ipynb
+# file to edit: _notebooks/2020-09-27-cifar-kmeans.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -167,7 +167,7 @@ window.onload = wrap_img;
 <li>En el <strong>agrupamiento</strong>, se particionan las imágenes en varios grupos (clases resultantes). No se conoce el significado de esas clases,simplemente se sabe que estadísticamente son parecidas.
 Ejemplos de redes para clasificación es una red convolucional (aprendizaje supervisado). Ejemplo de algoritmos de agrupamiento es kMeans.</li>
 </ul>
-<p>En este notebook se va a usar k-Means, que es un algoritmo de clasificación no supervisado (clustering) que agrupa objetos en k grupos basándose en sus características. El clustering in k grupos se realiza minimizando la suma de distancias (puede ser media ó cuadrática) entre cada objeto y el centroide de su cluster.</p>
+<p>En este notebook se va a usar k-Means, que es un <strong>algoritmo de clasificación no supervisado</strong> (clustering) que agrupa objetos en k grupos basándose en sus características. El clustering in k grupos se realiza minimizando la suma de distancias (puede ser media ó cuadrática) entre cada objeto y el centroide de su cluster.</p>
 <p>Este ejemplo se ha probado y funciona en Colab.</p>
 
 </div>
@@ -2120,12 +2120,12 @@ L 566.217241 457.075862
 <h2 id="5.-Construcción-del-modelo">
 <a class="anchor" href="#5.-Construcci%C3%B3n-del-modelo" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Construcción del modelo<a class="anchor-link" href="#5.-Construcci%C3%B3n-del-modelo"> </a>
 </h2>
-<p>El algoritmo consta de tres pasos:</p>
-<ul>
-<li>1) Inicialización: se selecciona el número de centroides (grupos, <code>NUM_CENTROIDS</code>) y se crean con el tamaño de las imágenes, aleatorios.  </li>
-<li>2) Asignación: cada imagen es asignada a su centroide más cercano.  </li>
-<li>3) Actualización centroides: se actualiza la posición del centroide de cada grupo tomando como nuevo centroide la posición del promedio de los objetos pertenecientes a dicho grupo.</li>
-</ul>
+<p>El algoritmo k-Means consta de tres pasos:</p>
+<ol>
+<li>Inicialización: se selecciona el número de centroides (grupos, <code>NUM_CENTROIDS</code>) y se crean con el tamaño de las imágenes, aleatorios.  </li>
+<li>Asignación: cada imagen es asignada a su centroide más cercano.  </li>
+<li>Actualización centroides: se actualiza la posición del centroide de cada grupo tomando como nuevo centroide la posición del promedio de los objetos pertenecientes a dicho grupo.</li>
+</ol>
 <p>Se repiten los pasos 2 y 3 hasta que los centroides están lo suficientemente cerca.</p>
 
 </div>
@@ -2230,14 +2230,23 @@ Convergence:  0.0
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>distances_from_centroid.append(np.sqrt(np.sum(np.abs(centroids[i, :] - train_images_rows[j,:]))))</code></p>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#distances_from_centroid.append(np.sqrt(np.sum(np.abs(centroids[i, :] - train_images_rows[j,:]))))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
-</div>
-</div>
+    
+
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -3060,7 +3069,7 @@ L 566.217241 119.668966
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/notebooks/computer%20vision/2020/09/06/cifar-kmeans.html" hidden></a>
+</script><a class="u-url" href="/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
