@@ -3,36 +3,36 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Agrupamiento k-Means para CIFAR-10 | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Agrupamiento k-Means para CIFAR-10 con tf.numpy | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Agrupamiento k-Means para CIFAR-10" />
+<meta property="og:title" content="Agrupamiento k-Means para CIFAR-10 con tf.numpy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy." />
 <meta property="og:description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy." />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/stanford.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-09-27T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-10-15T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10","dateModified":"2020-09-27T00:00:00-05:00","datePublished":"2020-09-27T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
+{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10 con tf.numpy","dateModified":"2020-10-15T00:00:00-05:00","datePublished":"2020-10-15T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Agrupamiento k-Means para CIFAR-10 | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Agrupamiento k-Means para CIFAR-10 con tf.numpy | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Agrupamiento k-Means para CIFAR-10" />
+<meta property="og:title" content="Agrupamiento k-Means para CIFAR-10 con tf.numpy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy." />
 <meta property="og:description" content="Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy." />
-<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
-<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
 <meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/stanford.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-09-27T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-10-15T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10","dateModified":"2020-09-27T00:00:00-05:00","datePublished":"2020-09-27T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
+{"description":"Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy.","@type":"BlogPosting","headline":"Agrupamiento k-Means para CIFAR-10 con tf.numpy","dateModified":"2020-10-15T00:00:00-05:00","datePublished":"2020-10-15T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,8 +87,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Agrupamiento k-Means para CIFAR-10</h1><p class="page-description">Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-27T00:00:00-05:00" itemprop="datePublished">
-        Sep 27, 2020
+    <h1 class="post-title p-name" itemprop="name headline">Agrupamiento k-Means para CIFAR-10 con tf.numpy</h1><p class="page-description">Agrupamiento (clustering) basado en k-Means para CIFAR-10 y la nueva tf.numpy.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-15T00:00:00-05:00" itemprop="datePublished">
+        Oct 15, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -111,19 +111,19 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-wrap flex-justify-end">
           <div class="px-2">
 
-    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-09-27-cifar-kmeans.ipynb" role="button" target="_blank">
+    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-10-15-cifar-kmeans.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/notebooks/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-09-27-cifar-kmeans.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-10-15-cifar-kmeans.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-09-27-cifar-kmeans.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-10-15-cifar-kmeans.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -142,7 +142,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2020-09-27-cifar-kmeans.ipynb
+# file to edit: _notebooks/2020-10-15-cifar-kmeans.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -4333,7 +4333,7 @@ L 566.217241 119.668966
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/notebooks/computer%20vision/2020/09/27/cifar-kmeans.html" hidden></a>
+</script><a class="u-url" href="/notebooks/computer%20vision/2020/10/15/cifar-kmeans.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
