@@ -161,9 +161,8 @@ window.onload = wrap_img;
 <a class="anchor" href="#1.-Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Introducción<a class="anchor-link" href="#1.-Introducci%C3%B3n"> </a>
 </h2>
 <p>Este ejemplo muestra cómo hacer una clasificación de imágenes usando Machine Learning clásico, sin usar una red convolucional. 
-Se va a usar k-Nearest Neighbor y una precisión básica basada en diferencia de pixels. 
-Instrucciones originales del <a href="https://cs231n.github.io/classification/">curso de Stanford CS231</a>.<br>
-Este ejemplo se ha probado y funciona en Colab.</p>
+Se va a usar k-Nearest Neighbor (<code>k=1</code> en este notebook) y una precisión básica basada en diferencia de pixels. Usaremos la función experimental <code>tensorflow.numpy</code> para aprovechar las GPUs durante operaciones con funciones <code>numpy</code> (por ejemplo, durante la inferencia):
+Instrucciones originales del <a href="https://cs231n.github.io/classification/">curso de Stanford CS231</a>.</p>
 
 </div>
 </div>
@@ -174,7 +173,7 @@ Este ejemplo se ha probado y funciona en Colab.</p>
 <h2 id="2.-Setup">
 <a class="anchor" href="#2.-Setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Setup<a class="anchor-link" href="#2.-Setup"> </a>
 </h2>
-<p>Importamos las librerías que vamos a usar. usaremos la función experimental <code>tensorflow.numpy</code> para aprovechar las GPUs durante operaciones con funciones <code>numpy</code> (por ejemplo, durante la inferencia):</p>
+<p>Importamos las librerías que vamos a usar:</p>
 
 </div>
 </div>
@@ -2102,7 +2101,7 @@ L 566.217241 457.075862
 <h2 id="5.-Construcción-del-modelo">
 <a class="anchor" href="#5.-Construcci%C3%B3n-del-modelo" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Construcción del modelo<a class="anchor-link" href="#5.-Construcci%C3%B3n-del-modelo"> </a>
 </h2>
-<p>Para la predicción, se compara una imagen de test con todas las de entrenamiento, y se devuelve la de menor diferencia (distancia L1: resta de valores de pixels)</p>
+<p>Para la predicción, se compara una imagen de test con todas las de entrenamiento, y se devuelve la de menor diferencia (distancia L1: resta de valores de pixels). Usamos <code>k=1</code> (es decir, sólo el vecino más cercano) de kNN. Con un k superior, pej <code>k=5</code> compararíamos con 5 imágenes y se devuelve la etiqueta más común de las 5.</p>
 
 </div>
 </div>

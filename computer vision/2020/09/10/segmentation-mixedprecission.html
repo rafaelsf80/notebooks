@@ -3,12 +3,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Segmentación de imágenes con keras.mixed_precission | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Mejora de keras.mixed_precission en segmentación de imágenes | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Segmentación de imágenes con keras.mixed_precission" />
+<meta property="og:title" content="Mejora de keras.mixed_precission en segmentación de imágenes" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Segmentación de imágenes con keras.mixed_precission" />
-<meta property="og:description" content="Segmentación de imágenes con keras.mixed_precission" />
+<meta name="description" content="Mejora de keras.mixed_precission en segmentación de imágenes" />
+<meta property="og:description" content="Mejora de keras.mixed_precission en segmentación de imágenes" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -16,15 +16,15 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-10T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Segmentación de imágenes con keras.mixed_precission","@type":"BlogPosting","headline":"Segmentación de imágenes con keras.mixed_precission","dateModified":"2020-09-10T00:00:00-05:00","datePublished":"2020-09-10T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/keras.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html"},"@context":"https://schema.org"}</script>
+{"description":"Mejora de keras.mixed_precission en segmentación de imágenes","@type":"BlogPosting","headline":"Mejora de keras.mixed_precission en segmentación de imágenes","dateModified":"2020-09-10T00:00:00-05:00","datePublished":"2020-09-10T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/keras.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Segmentación de imágenes con keras.mixed_precission | Notebooks de Aprendizaje Profundo en Español</title>
+<title>Mejora de keras.mixed_precission en segmentación de imágenes | Notebooks de Aprendizaje Profundo en Español</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Segmentación de imágenes con keras.mixed_precission" />
+<meta property="og:title" content="Mejora de keras.mixed_precission en segmentación de imágenes" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Segmentación de imágenes con keras.mixed_precission" />
-<meta property="og:description" content="Segmentación de imágenes con keras.mixed_precission" />
+<meta name="description" content="Mejora de keras.mixed_precission en segmentación de imágenes" />
+<meta property="og:description" content="Mejora de keras.mixed_precission en segmentación de imágenes" />
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-09-10T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Segmentación de imágenes con keras.mixed_precission","@type":"BlogPosting","headline":"Segmentación de imágenes con keras.mixed_precission","dateModified":"2020-09-10T00:00:00-05:00","datePublished":"2020-09-10T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/keras.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html"},"@context":"https://schema.org"}</script>
+{"description":"Mejora de keras.mixed_precission en segmentación de imágenes","@type":"BlogPosting","headline":"Mejora de keras.mixed_precission en segmentación de imágenes","dateModified":"2020-09-10T00:00:00-05:00","datePublished":"2020-09-10T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/keras.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/09/10/segmentation-mixedprecission.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +87,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Segmentación de imágenes con keras.mixed_precission</h1><p class="page-description">Segmentación de imágenes con keras.mixed_precission</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-10T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Mejora de keras.mixed_precission en segmentación de imágenes</h1><p class="page-description">Mejora de keras.mixed_precission en segmentación de imágenes</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-10T00:00:00-05:00" itemprop="datePublished">
         Sep 10, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
