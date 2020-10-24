@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>JAX | Notebooks de Aprendizaje Profundo en Español</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="JAX" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(SPANISH) Autograd and XLA, brought together for high-performance machine learning research" />
+<meta property="og:description" content="(SPANISH) Autograd and XLA, brought together for high-performance machine learning research" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/jax.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"(SPANISH) Autograd and XLA, brought together for high-performance machine learning research","@type":"BlogPosting","headline":"JAX","dateModified":"2020-09-02T00:00:00-05:00","datePublished":"2020-09-02T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/jax.png","url":"https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>JAX | Notebooks de Aprendizaje Profundo en Español</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="JAX" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="(SPANISH) Autograd and XLA, brought together for high-performance machine learning research" />
+<meta property="og:description" content="(SPANISH) Autograd and XLA, brought together for high-performance machine learning research" />
+<link rel="canonical" href="https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html" />
+<meta property="og:url" content="https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html" />
+<meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/jax.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"(SPANISH) Autograd and XLA, brought together for high-performance machine learning research","@type":"BlogPosting","headline":"JAX","dateModified":"2020-09-02T00:00:00-05:00","datePublished":"2020-09-02T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/jax.png","url":"https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/tools/2020/09/02/JAX-quickstart.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/notebooks/">Notebooks de Aprendizaje Profundo en Español</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/notebooks/about/">About Me</a><a class="page-link" href="/notebooks/search/">Search</a><a class="page-link" href="/notebooks/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JAX</h1><p class="page-description">(SPANISH) Autograd and XLA, brought together for high-performance machine learning research</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-02T00:00:00-05:00" itemprop="datePublished">
+        Sep 2, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/notebooks/categories/#Tools">Tools</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/rafaelsf80/notebooks/tree/master/_notebooks/2020-09-02-JAX-quickstart.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/notebooks/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/rafaelsf80/notebooks/master?filepath=_notebooks%2F2020-09-02-JAX-quickstart.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/rafaelsf80/notebooks/blob/master/_notebooks/2020-09-02-JAX-quickstart.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#JAX-Quickstart">JAX Quickstart </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Multiplying-Matrices">Multiplying Matrices </a></li>
+<li class="toc-entry toc-h2"><a href="#Using-jit-to-speed-up-functions">Using jit to speed up functions </a></li>
+<li class="toc-entry toc-h2"><a href="#Taking-derivatives-with-grad">Taking derivatives with grad </a></li>
+<li class="toc-entry toc-h2"><a href="#Auto-vectorization-with-vmap">Auto-vectorization with vmap </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-09-02-JAX-quickstart.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="JAX-Quickstart">
+<a class="anchor" href="#JAX-Quickstart" aria-hidden="true"><span class="octicon octicon-link"></span></a>JAX Quickstart<a class="anchor-link" href="#JAX-Quickstart"> </a>
+</h1>
+<p><strong>JAX is NumPy on the CPU, GPU, and TPU, with great automatic differentiation for high-performance machine learning research.</strong></p>
+<p>With its updated version of <a href="https://github.com/hips/autograd">Autograd</a>, JAX
+can automatically differentiate native Python and NumPy code. It can
+differentiate through a large subset of Python’s features, including loops, ifs,
+recursion, and closures, and it can even take derivatives of derivatives of
+derivatives. It supports reverse-mode as well as forward-mode differentiation, and the two can be composed arbitrarily
+to any order.</p>
+<p>What’s new is that JAX uses
+<a href="https://www.tensorflow.org/xla">XLA</a>
+to compile and run your NumPy code on accelerators, like GPUs and TPUs.
+Compilation happens under the hood by default, with library calls getting
+just-in-time compiled and executed. But JAX even lets you just-in-time compile
+your own Python functions into XLA-optimized kernels using a one-function API.
+Compilation and automatic differentiation can be composed arbitrarily, so you
+can express sophisticated algorithms and get maximal performance without having
+to leave Python.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span><span class="p">,</span> <span class="n">jit</span><span class="p">,</span> <span class="n">vmap</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">random</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multiplying-Matrices">
+<a class="anchor" href="#Multiplying-Matrices" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiplying Matrices<a class="anchor-link" href="#Multiplying-Matrices"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We'll be generating random data in the following examples. One big difference between NumPy and JAX is how you generate random numbers. For more details, see <a href="https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html#%F0%9F%94%AA-Random-Numbers">Common Gotchas in JAX</a>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">PRNGKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's dive right in and multiply two big matrices.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> jnp.dot(x, x.T).block_until_ready()  # runs on the GPU
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We added that <code>block_until_ready</code> because <a href="https://jax.readthedocs.io/en/latest/async_dispatch.html">JAX uses asynchronous execution by default</a>.</p>
+<p>JAX NumPy functions work on regular NumPy arrays.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> jnp.dot(x, x.T).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's slower because it has to transfer data to the GPU every time. You can ensure that an NDArray is backed by device memory using <code>device_put</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">device_put</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">device_put</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> jnp.dot(x, x.T).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The output of <code>device_put</code> still acts like an NDArray, but it only copies values back to the CPU when they're needed for printing, plotting, saving to disk, branching, etc. The behavior of <code>device_put</code> is equivalent to the function <code>jit(lambda x: x)</code>, but it's faster.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you have a GPU (or TPU!) these calls run on the accelerator and have the potential to be much faster than on CPU.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> np.dot(x, x.T)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>JAX is much more than just a GPU-backed NumPy. It also comes with a few program transformations that are useful when writing numerical code. For now, there's three main ones:</p>
+<ul>
+<li>
+<code>jit</code>, for speeding up your code</li>
+<li>
+<code>grad</code>, for taking derivatives</li>
+<li>
+<code>vmap</code>, for automatic vectorization or batching.</li>
+</ul>
+<p>Let's go over these, one-by-one. We'll also end up composing these in interesting ways.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Using-jit-to-speed-up-functions">
+<a class="anchor" href="#Using-jit-to-speed-up-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using <code>jit</code> to speed up functions<a class="anchor-link" href="#Using-jit-to-speed-up-functions"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>JAX runs transparently on the GPU (or CPU, if you don't have one, and TPU coming soon!). However, in the above example, JAX is dispatching kernels to the GPU one operation at a time. If we have a sequence of operations, we can use the <code>@jit</code> decorator to compile multiple operations together using <a href="https://www.tensorflow.org/xla">XLA</a>. Let's try that.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">selu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.67</span><span class="p">,</span> <span class="n">lmbda</span><span class="o">=</span><span class="mf">1.05</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">lmbda</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="mi">1000000</span><span class="p">,))</span>
+<span class="o">%</span><span class="k">timeit</span> selu(x).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can speed it up with <code>@jit</code>, which will jit-compile the first time <code>selu</code> is called and will be cached thereafter.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">selu_jit</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">selu</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> selu_jit(x).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Taking-derivatives-with-grad">
+<a class="anchor" href="#Taking-derivatives-with-grad" aria-hidden="true"><span class="octicon octicon-link"></span></a>Taking derivatives with <code>grad</code><a class="anchor-link" href="#Taking-derivatives-with-grad"> </a>
+</h2>
+<p>In addition to evaluating numerical functions, we also want to transform them. One transformation is <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a>. In JAX, just like in <a href="https://github.com/HIPS/autograd">Autograd</a>, you can compute gradients with the <code>grad</code> function.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sum_logistic</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)))</span>
+
+<span class="n">x_small</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">3.</span><span class="p">)</span>
+<span class="n">derivative_fn</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">sum_logistic</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">derivative_fn</span><span class="p">(</span><span class="n">x_small</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's verify with finite differences that our result is correct.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">first_finite_differences</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+  <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-3</span>
+  <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">v</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">eps</span><span class="p">)</span>
+                   <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">jnp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">first_finite_differences</span><span class="p">(</span><span class="n">sum_logistic</span><span class="p">,</span> <span class="n">x_small</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Taking derivatives is as easy as calling <code>grad</code>. <code>grad</code> and <code>jit</code> compose and can be mixed arbitrarily. In the above example we jitted <code>sum_logistic</code> and then took its derivative. We can go further:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">jit</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">jit</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">sum_logistic</span><span class="p">)))))(</span><span class="mf">1.0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more advanced autodiff, you can use <code>jax.vjp</code> for reverse-mode vector-Jacobian products and <code>jax.jvp</code> for forward-mode Jacobian-vector products. The two can be composed arbitrarily with one another, and with other JAX transformations. Here's one way to compose them to make a function that efficiently computes full Hessian matrices:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">jacfwd</span><span class="p">,</span> <span class="n">jacrev</span>
+<span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">jit</span><span class="p">(</span><span class="n">jacfwd</span><span class="p">(</span><span class="n">jacrev</span><span class="p">(</span><span class="n">fun</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Auto-vectorization-with-vmap">
+<a class="anchor" href="#Auto-vectorization-with-vmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auto-vectorization with <code>vmap</code><a class="anchor-link" href="#Auto-vectorization-with-vmap"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>JAX has one more transformation in its API that you might find useful: <code>vmap</code>, the vectorizing map. It has the familiar semantics of mapping a function along array axes, but instead of keeping the loop on the outside, it pushes the loop down into a function’s primitive operations for better performance. When composed with <code>jit</code>, it can be just as fast as adding the batch dimensions by hand.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We're going to work with a simple example, and promote matrix-vector products into matrix-matrix products using <code>vmap</code>. Although this is easy to do by hand in this specific case, the same technique can apply to more complicated functions.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">batched_x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">apply_matrix</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given a function such as <code>apply_matrix</code>, we can loop over a batch dimension in Python, but usually the performance of doing so is poor.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">naively_batched_apply_matrix</span><span class="p">(</span><span class="n">v_batched</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">apply_matrix</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">v_batched</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Naively batched'</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> naively_batched_apply_matrix(batched_x).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We know how to batch this operation manually. In this case, <code>jnp.dot</code> handles extra batch dimensions transparently.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@jit</span>
+<span class="k">def</span> <span class="nf">batched_apply_matrix</span><span class="p">(</span><span class="n">v_batched</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v_batched</span><span class="p">,</span> <span class="n">mat</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Manually batched'</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> batched_apply_matrix(batched_x).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, suppose we had a more complicated function without batching support. We can use <code>vmap</code> to add batching support automatically.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@jit</span>
+<span class="k">def</span> <span class="nf">vmap_batched_apply_matrix</span><span class="p">(</span><span class="n">v_batched</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">vmap</span><span class="p">(</span><span class="n">apply_matrix</span><span class="p">)(</span><span class="n">v_batched</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Auto-vectorized with vmap'</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> vmap_batched_apply_matrix(batched_x).block_until_ready()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, <code>vmap</code> can be arbitrarily composed with <code>jit</code>, <code>grad</code>, and any other JAX transformation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is just a taste of what JAX can do. We're really excited to see what you do with it!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="rafaelsf80/notebooks"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/notebooks/tools/2020/09/02/JAX-quickstart.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/notebooks/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/notebooks/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/notebooks/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Una lista de notebooks en español sobre inteligencia artificial y aprendizaje profundo.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rafaelsf80" title="rafaelsf80"><svg class="svg-icon grey"><use xlink:href="/notebooks/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/rafaelsf80" title="rafaelsf80"><svg class="svg-icon grey"><use xlink:href="/notebooks/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
