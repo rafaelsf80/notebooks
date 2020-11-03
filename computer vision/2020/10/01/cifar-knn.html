@@ -2132,7 +2132,7 @@ L 566.217241 457.075862
 <h2 id="6.-Entrenamiento-y-evaluación.-Medida-con-timeit">
 <a class="anchor" href="#6.-Entrenamiento-y-evaluaci%C3%B3n.-Medida-con-timeit" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Entrenamiento y evaluación. Medida con <code>timeit</code><a class="anchor-link" href="#6.-Entrenamiento-y-evaluaci%C3%B3n.-Medida-con-timeit"> </a>
 </h2>
-<p>Lanzamos el entrenamiento  usando <strong>k Nearest Neighbors</strong> (kNN). Para la predicción, se calcula la menor diferencia entre la imagen del set de prueba y todas las imágenes de entrenamiento. Se devuelve la etiqueta de la de menor diferencia. Para comparar la velocidad entre <code>tensorflow.experimental.numpy</code> (lo que medimos) y <code>numpy</code>, usamos <code>timeit</code> (para medir con <code>numpy</code>, cambiar el <code>import</code> de celda previa)</p>
+<p>Lanzamos el entrenamiento  usando <strong>k Nearest Neighbors</strong> (kNN), con <code>k=1</code>. Para la predicción, se calcula la menor diferencia entre la imagen del set de prueba y todas las imágenes de entrenamiento. Se devuelve la etiqueta de la de menor diferencia. Medimos la velocidad de <code>tensorflow.experimental.numpy</code> con <code>timeit</code>. Para comparar la velocidad entre <code>tensorflow.experimental.numpy</code> (lo que medimos) y <code>numpy</code>, hay que cambiar el <code>import</code> de las primeras celdas y ejecutar el notebook de nuevo.</p>
 
 </div>
 </div>
@@ -2162,11 +2162,18 @@ L 566.217241 457.075862
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>291 ns ± 4.18 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
-3.31 s ± 53.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-Accuracy: 0.220000
-</pre>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-84e50d588d98&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>nn <span class="ansi-blue-fg">=</span> NearestNeighbor<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># create a Nearest Neighbor classifier class</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-intense-fg ansi-bold">      3</span> get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'timeit'</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'nn.train(train_images_rows, train_labels)  # train the classifier on the training images and labels'</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> 
+<span class="ansi-green-intense-fg ansi-bold">      5</span> get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'timeit'</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'Yte_predict = nn.predict(test_images_rows)'</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'NearestNeighbor' is not defined</pre>
 </div>
 </div>
 
