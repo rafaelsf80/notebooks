@@ -186,7 +186,7 @@ Instrucciones originales de kNN tomadas del <a href="https://cs231n.github.io/cl
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip3 install --user --quiet --upgrade tf-nightly
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install --quiet --upgrade tf-nightly
 </pre></div>
 
     </div>
@@ -2122,7 +2122,7 @@ L 566.217241 457.075862
 <h2 id="5.-Construcción-del-modelo">
 <a class="anchor" href="#5.-Construcci%C3%B3n-del-modelo" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Construcción del modelo<a class="anchor-link" href="#5.-Construcci%C3%B3n-del-modelo"> </a>
 </h2>
-<p>Para la predicción, se compara una imagen de test con todas las de entrenamiento, y se devuelve la de menor diferencia (distancia L1: resta de valores de pixels). Usamos <code>k=1</code> (es decir, sólo el vecino más cercano) de kNN. Con un k superior, pej <code>k=5</code> compararíamos con 5 imágenes y se devuelve la etiqueta más común de las 5.</p>
+<p>Para la predicción, se compara una imagen de test con todas las de entrenamiento, y se devuelve la de menor diferencia (distancia L1: resta de valores de pixels). Usamos <code>k=1</code> (es decir, sólo el vecino más cercano) de kNN. Con un k superior, pej <code>k=5</code> compararíamos con 5 imágenes y se devolvería la etiqueta más común de las 5.</p>
 
 </div>
 </div>
@@ -2154,10 +2154,9 @@ L 566.217241 457.075862
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_test</span><span class="p">):</span>
       <span class="c1"># find the nearest training image to the i'th test image</span>
       <span class="c1"># using the L1 distance (sum of absolute value differences)</span>
-      <span class="n">distances</span> <span class="o">=</span> <span class="n">tnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">distances</span> <span class="o">=</span> <span class="n">tnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">min_index</span> <span class="o">=</span> <span class="n">tnp</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="c1"># get the index with smallest distance</span>
       <span class="n">Ypred</span> <span class="o">=</span> <span class="n">tnp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ypred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="p">[</span><span class="n">min_index</span><span class="p">])</span> <span class="c1"># predict the label of the nearest example</span>
-      <span class="c1">#print(Ypred)</span>
       <span class="c1">#print("Test image {} of {} is {}".format(i, num_test, Ypred[-1]))</span>
 
     <span class="k">return</span> <span class="n">Ypred</span>
