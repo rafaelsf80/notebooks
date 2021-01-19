@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-01T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy.","@type":"BlogPosting","headline":"Clasificador kNN para CIFAR-10 con tf.numpy","dateModified":"2020-10-01T00:00:00-05:00","datePublished":"2020-10-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html"},"@context":"https://schema.org"}</script>
+{"description":"Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy.","headline":"Clasificador kNN para CIFAR-10 con tf.numpy","@type":"BlogPosting","dateModified":"2020-10-01T00:00:00-05:00","datePublished":"2020-10-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html"},"url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Clasificador kNN para CIFAR-10 con tf.numpy | Notebooks de Aprendizaje Profundo en Español</title>
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-01T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy.","@type":"BlogPosting","headline":"Clasificador kNN para CIFAR-10 con tf.numpy","dateModified":"2020-10-01T00:00:00-05:00","datePublished":"2020-10-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html"},"@context":"https://schema.org"}</script>
+{"description":"Clasificador k-Nearest Neighbor para CIFAR-10, usando la nueva clase experimental tf.numpy.","headline":"Clasificador kNN para CIFAR-10 con tf.numpy","@type":"BlogPosting","dateModified":"2020-10-01T00:00:00-05:00","datePublished":"2020-10-01T00:00:00-05:00","image":"https://rafaelsf80.github.io/notebooks/images/stanford.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html"},"url":"https://rafaelsf80.github.io/notebooks/computer%20vision/2020/10/01/cifar-knn.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      6 min read
     
 </span></p>
 
@@ -186,10 +186,32 @@ Instrucciones originales de kNN tomadas del <a href="https://cs231n.github.io/cl
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install --quiet --upgrade tf-nightly
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip3 install --user --quiet --upgrade tf-nightly
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre><span class="ansi-red-fg">ERROR: tensorflow 2.3.1 has requirement gast==0.3.3, but you'll have gast 0.4.0 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: tensorflow 2.3.1 has requirement h5py&lt;2.11.0,&gt;=2.10.0, but you'll have h5py 3.1.0 which is incompatible.</span>
+<span class="ansi-red-fg">ERROR: tensorflow 2.3.1 has requirement numpy&lt;1.19.0,&gt;=1.16.0, but you'll have numpy 1.19.4 which is incompatible.</span>
+<span class="ansi-yellow-fg">  WARNING: The script tensorboard is installed in '/Users/rafaelsanchez/Library/Python/3.8/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.</span>
+<span class="ansi-yellow-fg">  WARNING: The scripts estimator_ckpt_converter, import_pb_to_tensorboard, saved_model_cli, tf_upgrade_v2, tflite_convert, toco and toco_from_protos are installed in '/Users/rafaelsanchez/Library/Python/3.8/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.</span>
+<span class="ansi-yellow-fg">WARNING: You are using pip version 19.2.3, however version 20.3.3 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.</span>
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -215,6 +237,43 @@ Instrucciones originales de kNN tomadas del <a href="https://cs231n.github.io/cl
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-1920e3b402dc&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> 
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">import</span> tensorflow <span class="ansi-green-fg">as</span> tf
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> tensorflow<span class="ansi-blue-fg">.</span>experimental<span class="ansi-blue-fg">.</span>numpy <span class="ansi-green-fg">as</span> tnp
+<span class="ansi-green-intense-fg ansi-bold">      7</span> <span class="ansi-green-fg">from</span> tensorflow<span class="ansi-blue-fg">.</span>keras <span class="ansi-green-fg">import</span> datasets<span class="ansi-blue-fg">,</span> layers<span class="ansi-blue-fg">,</span> models
+<span class="ansi-green-intense-fg ansi-bold">      8</span> 
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/tensorflow/_api/v2/experimental/numpy/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">    156</span> <span class="ansi-green-fg">import</span> sys <span class="ansi-green-fg">as</span> _sys
+<span class="ansi-green-intense-fg ansi-bold">    157</span> 
+<span class="ansi-green-fg">--&gt; 158</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span> <span class="ansi-green-fg">import</span> random
+<span class="ansi-green-intense-fg ansi-bold">    159</span> <span class="ansi-green-fg">from</span> tensorflow<span class="ansi-blue-fg">.</span>python<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>numpy_ops <span class="ansi-green-fg">import</span> issubdtype
+<span class="ansi-green-intense-fg ansi-bold">    160</span> <span class="ansi-green-fg">from</span> tensorflow<span class="ansi-blue-fg">.</span>python<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>numpy_ops <span class="ansi-green-fg">import</span> max
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/tensorflow/_api/v2/experimental/numpy/random/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">import</span> sys <span class="ansi-green-fg">as</span> _sys
+<span class="ansi-green-intense-fg ansi-bold">      9</span> 
+<span class="ansi-green-fg">---&gt; 10</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> tensorflow<span class="ansi-blue-fg">.</span>python<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>numpy_ops<span class="ansi-blue-fg">.</span>np_random <span class="ansi-green-fg">import</span> poisson
+<span class="ansi-green-intense-fg ansi-bold">     11</span> <span class="ansi-green-fg">from</span> tensorflow<span class="ansi-blue-fg">.</span>python<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>numpy_ops<span class="ansi-blue-fg">.</span>np_random <span class="ansi-green-fg">import</span> rand
+<span class="ansi-green-intense-fg ansi-bold">     12</span> <span class="ansi-green-fg">from</span> tensorflow<span class="ansi-blue-fg">.</span>python<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>numpy_ops<span class="ansi-blue-fg">.</span>np_random <span class="ansi-green-fg">import</span> randint
+
+<span class="ansi-red-fg">ImportError</span>: cannot import name 'poisson' from 'tensorflow.python.ops.numpy_ops.np_random' (/Users/rafaelsanchez/Library/Python/3.8/lib/python/site-packages/tensorflow/python/ops/numpy_ops/np_random.py)</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -251,8 +310,8 @@ Instrucciones originales de kNN tomadas del <a href="https://cs231n.github.io/cl
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>All logical devices: [LogicalDevice(name='/device:CPU:0', device_type='CPU')]
-All physical devices: [PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')]
+<pre>All logical devices: [LogicalDevice(name='/device:CPU:0', device_type='CPU'), LogicalDevice(name='/device:XLA_CPU:0', device_type='XLA_CPU')]
+All physical devices: [PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU'), PhysicalDevice(name='/physical_device:XLA_CPU:0', device_type='XLA_CPU')]
 Num GPUs Available:  0
 </pre>
 </div>
@@ -298,6 +357,29 @@ Num GPUs Available:  0
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-5-278cce811302&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-blue-fg">(</span>train_images<span class="ansi-blue-fg">,</span> train_labels<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>test_images<span class="ansi-blue-fg">,</span> test_labels<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">=</span> datasets<span class="ansi-blue-fg">.</span>cifar10<span class="ansi-blue-fg">.</span>load_data<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg"># Usando scikit-learn, Hacemos shuffle y usamos sólo 2000 imágenes para entrenar y 100 para test</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> train_images<span class="ansi-blue-fg">,</span> train_labels <span class="ansi-blue-fg">=</span> shuffle<span class="ansi-blue-fg">(</span>train_images<span class="ansi-blue-fg">,</span> train_labels<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> test_images<span class="ansi-blue-fg">,</span> test_labels <span class="ansi-blue-fg">=</span> shuffle<span class="ansi-blue-fg">(</span>test_images<span class="ansi-blue-fg">,</span> test_labels<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'datasets' is not defined</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -2274,7 +2356,8 @@ L 566.217241 457.075862
     <span class="n">inp</span> <span class="o">=</span> <span class="n">arg</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="n">tnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">inp</span><span class="p">))</span>
     <span class="n">min_index</span> <span class="o">=</span> <span class="n">tnp</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="c1"># get the index with smallest distance</span>
-    <span class="n">Ypred</span> <span class="o">=</span> <span class="n">ytr</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="c1"># predict the label of the nearest example</span>
+    <span class="c1"># Ypred = ytr[min_index] # predict the label of the nearest example</span>
+    <span class="n">Ypred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">ytr</span><span class="p">,</span> <span class="n">min_index</span><span class="p">)</span> <span class="c1"># avoids strided_slice warning</span>
     <span class="k">return</span> <span class="n">Ypred</span> 
   <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">vectorized_map</span><span class="p">(</span><span class="n">single_example_predict</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">vectorized_predict</span><span class="p">(</span><span class="n">test_images_rows</span><span class="p">),</span>
