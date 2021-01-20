@@ -159,7 +159,7 @@ window.onload = wrap_img;
 <h2 id="1.-Introducción">
 <a class="anchor" href="#1.-Introducci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Introducción<a class="anchor-link" href="#1.-Introducci%C3%B3n"> </a>
 </h2>
-<p>Este tutorial usa el dataset de MNIST con el API de alto nivel de TFF, llamado <strong>FL API</strong> (Federated layer API) cuya clase principal es  <code>tff.learning</code>, la cual incluye interfaces de alto nivel para tareas típicas de federación como entrenamiento y otras.</p>
+<p>Este tutorial usa el dataset de MNIST con el API de alto nivel de TFF, llamado <strong>FL API</strong> (Federated Layer API) cuya clase principal es  <code>tff.learning</code>, la cual incluye interfaces de alto nivel para tareas típicas de federación como entrenamiento y otras.</p>
 <p>Existe otra API de más bajo nivel, FC Core API, que permite implementar tus propios algoritmos de federación.</p>
 
 </div>
@@ -298,7 +298,7 @@ El dataset que devuelve <code>load_data()</code> son instancias de <code>tff.sim
 </h2>
 <p>Usamos un modelo estándar de Keras, el cual debe paquetizarse dentro de la clase <code>tff.learning</code>.
 Se usará la llamada <code>tff.learning.from_keras_model</code>, pasándole el modelo Keras original y los datos.</p>
-<p><strong>Nota:</strong> no hay que compilar. Las métricas, pérdidas y optimizadores se configuran más tarde.</p>
+<p><strong>Nota:</strong> no hay que compilar ahora. Las métricas, pérdidas y optimizadores se configuran más tarde.</p>
 
 </div>
 </div>
@@ -376,12 +376,11 @@ lo pueda implementar TFF. Los detalles técnicos están en <a href="custom_feder
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>TFF ha construído un par de <em>federated computations</em> y las ha empaquetado en <code>tff.templates.IterativeProcess</code>.
-Estas dos computaciones son <code>initialize</code> y <code>next</code>. Estas dos computaciones implementan el algoritmo de <a href="https://arxiv.org/abs/1602.05629">Federated Averaging</a>.</p>
-<p>Actualmente el algoritmo se soporta en local.</p>
+<p>TFF implementa el algoritmo de <a href="https://arxiv.org/abs/1602.05629">Federated Averaging</a> con dos computaciones empaquetadas en la clase <code>tff.templates.IterativeProcess</code>. Estas dos computaciones son <code>initialize</code> y <code>next</code>.</p>
+<p>Actualmente el algoritmo se soporta en local por ahora (se ejecuta toda en una máquina).</p>
 <p>La operación <code>initialize</code> es una función, como todas las computaciones federadas.
 No usa argumentos, y devuelve un resultado: la representación del estado del proceso de Federated Averaging en el servidor.</p>
-<p>La operación <code>next</code> representa un ciclo completo de Federated Averaging, que consiste en desplegar el estado del servidor (incluyendo el modelo inicial) a los clientes, entrenamiento en los clientes, recogida de parámeotros de vuelta, y generación de un modelo nuevo en el servidor.</p>
+<p>La operación <code>next</code> es una función, y representa un ciclo completo de Federated Averaging, que consiste en desplegar el estado del servidor (incluyendo el modelo inicial) a los clientes, entrenamiento en los clientes, recogida de parámetros de vuelta, y generación de un modelo nuevo en el servidor.</p>
 <p>Se puede pensar en <code>next</code>como este flujo:</p>
 <p><code>SERVER_STATE, FEDERATED_DATA -&gt; SERVER_STATE, TRAINING_METRICS</code></p>
 <p>Es decir, <code>next</code> no es una función que se ejecuta en el seridor, sino que declara una función que se computa de manera centralizada, con un input del servidor (<code>SERVER_STATE</code>), y con contribuciones de cada cliente con sus propios datos locales.</p>
