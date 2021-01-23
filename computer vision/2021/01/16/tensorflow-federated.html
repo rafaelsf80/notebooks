@@ -377,13 +377,15 @@ lo pueda implementar TFF. Los detalles técnicos están en <a href="custom_feder
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>TFF implementa el algoritmo de <a href="https://arxiv.org/abs/1602.05629">Federated Averaging</a> con dos computaciones empaquetadas en la clase <code>tff.templates.IterativeProcess</code>. Estas dos computaciones son <code>initialize</code> y <code>next</code>.</p>
+<ol>
+<li>La operación <code>initialize</code> es una función, como todas las computaciones federadas.
+No usa argumentos, y devuelve un resultado: la representación del estado del proceso de Federated Averaging en el servidor.</li>
+<li>La operación <code>next</code> es una función, y representa un ciclo completo de Federated Averaging, que consiste en desplegar el estado del servidor (incluyendo el modelo inicial) a los clientes, entrenamiento en los clientes, recogida de parámetros de vuelta, y generación de un modelo nuevo en el servidor.</li>
+</ol>
 <p>Actualmente el algoritmo se soporta en local por ahora (se ejecuta toda en una máquina).</p>
-<p>La operación <code>initialize</code> es una función, como todas las computaciones federadas.
-No usa argumentos, y devuelve un resultado: la representación del estado del proceso de Federated Averaging en el servidor.</p>
-<p>La operación <code>next</code> es una función, y representa un ciclo completo de Federated Averaging, que consiste en desplegar el estado del servidor (incluyendo el modelo inicial) a los clientes, entrenamiento en los clientes, recogida de parámetros de vuelta, y generación de un modelo nuevo en el servidor.</p>
-<p>Se puede pensar en <code>next</code>como este flujo:</p>
+<p>Se puede pensar en <code>next</code> como este flujo:</p>
 <p><code>SERVER_STATE, FEDERATED_DATA -&gt; SERVER_STATE, TRAINING_METRICS</code></p>
-<p>Es decir, <code>next</code> no es una función que se ejecuta en el seridor, sino que declara una función que se computa de manera centralizada, con un input del servidor (<code>SERVER_STATE</code>), y con contribuciones de cada cliente con sus propios datos locales.</p>
+<p>Es decir, <code>next</code> no es una función que se ejecuta en un servidor, sino que se ejecuta de manera distribuída, con un input del servidor (<code>SERVER_STATE</code>), y unas contribuciones de cada cliente con sus propios datos locales.</p>
 
 </div>
 </div>
