@@ -12,11 +12,11 @@
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
-<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/googlecloud.png" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/tfx.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-25T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Ejemplo sencillo de TFX con un dataset de posts de Stack Overflow con InteractiveContext.","@type":"BlogPosting","headline":"TFX: ejemplo con un dataset de Stack Overflow con InteractiveContext","url":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html","datePublished":"2021-01-25T00:00:00-06:00","dateModified":"2021-01-25T00:00:00-06:00","image":"https://rafaelsf80.github.io/notebooks/images/googlecloud.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html"},"@context":"https://schema.org"}</script>
+{"description":"Ejemplo sencillo de TFX con un dataset de posts de Stack Overflow con InteractiveContext.","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html"},"@type":"BlogPosting","url":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html","headline":"TFX: ejemplo con un dataset de Stack Overflow con InteractiveContext","dateModified":"2021-01-25T00:00:00-06:00","datePublished":"2021-01-25T00:00:00-06:00","image":"https://rafaelsf80.github.io/notebooks/images/tfx.png","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://rafaelsf80.github.io/notebooks/feed.xml" title="Notebooks de Aprendizaje Profundo en Español" /><link rel="shortcut icon" type="image/x-icon" href="/notebooks/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>TFX: ejemplo con un dataset de Stack Overflow con InteractiveContext | Notebooks de Aprendizaje Profundo en Español</title>
@@ -28,11 +28,11 @@
 <link rel="canonical" href="https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html" />
 <meta property="og:url" content="https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html" />
 <meta property="og:site_name" content="Notebooks de Aprendizaje Profundo en Español" />
-<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/googlecloud.png" />
+<meta property="og:image" content="https://rafaelsf80.github.io/notebooks/images/tfx.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-25T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Ejemplo sencillo de TFX con un dataset de posts de Stack Overflow con InteractiveContext.","@type":"BlogPosting","headline":"TFX: ejemplo con un dataset de Stack Overflow con InteractiveContext","url":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html","datePublished":"2021-01-25T00:00:00-06:00","dateModified":"2021-01-25T00:00:00-06:00","image":"https://rafaelsf80.github.io/notebooks/images/googlecloud.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html"},"@context":"https://schema.org"}</script>
+{"description":"Ejemplo sencillo de TFX con un dataset de posts de Stack Overflow con InteractiveContext.","mainEntityOfPage":{"@type":"WebPage","@id":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html"},"@type":"BlogPosting","url":"https://rafaelsf80.github.io/notebooks/natural%20language%20processing/google%20cloud/2021/01/25/tfx-stackoverflow.html","headline":"TFX: ejemplo con un dataset de Stack Overflow con InteractiveContext","dateModified":"2021-01-25T00:00:00-06:00","datePublished":"2021-01-25T00:00:00-06:00","image":"https://rafaelsf80.github.io/notebooks/images/tfx.png","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      15 min read
+      17 min read
     
 </span></p>
 
@@ -231,6 +231,27 @@ window.onload = wrap_img;
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-8c3cba8104c1&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># OPCIONAL: Restart Colab runtime after installing TFX</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> google<span class="ansi-blue-fg">.</span>colab <span class="ansi-green-fg">import</span> auth <span class="ansi-green-fg">as</span> google_auth
+<span class="ansi-green-intense-fg ansi-bold">      3</span> google_auth<span class="ansi-blue-fg">.</span>authenticate_user<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'google.colab'</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     
 
@@ -301,6 +322,20 @@ window.onload = wrap_img;
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:absl:RuntimeParameter is only supported on Cloud-based DAG runner currently.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     
 
@@ -324,6 +359,21 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>TensorFlow version: 2.4.1
+TFX version: 0.27.0
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -374,6 +424,21 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:absl:InteractiveContext pipeline_root argument not provided: using temporary directory /var/folders/sr/1jd3j8k5791g_37qk2vdcc_80069vh/T/tfx-interactive-2021-04-03T16_45_34.079859-3hgwznh2 as root for pipeline outputs.
+WARNING:absl:InteractiveContext metadata_connection_config not provided: using SQLite ML Metadata database at /var/folders/sr/1jd3j8k5791g_37qk2vdcc_80069vh/T/tfx-interactive-2021-04-03T16_45_34.079859-3hgwznh2/metadata.sqlite.
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -437,6 +502,25 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Downloading data from https://storage.googleapis.com/download.tensorflow.org/data/stack_overflow_16k.tar.gz
+6053888/6053168 [==============================] - 0s 0us/step
+Generating: TRAIN  java   2000
+Generating: TRAIN  python   2000
+Generating: TRAIN  csharp   2000
+Generating: TRAIN  javascript   2000
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -512,6 +596,631 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:absl:Running driver for ImportExampleGen
+INFO:absl:MetadataStore with DB connection initialized
+INFO:absl:select span and version = (0, None)
+INFO:absl:latest span and version = (0, None)
+INFO:absl:Running executor for ImportExampleGen
+INFO:absl:Generating examples.
+WARNING:apache_beam.runners.interactive.interactive_environment:Dependencies required for Interactive Beam PCollection visualization are not available, please use: `pip install apache-beam[interactive]` to install necessary dependencies to enable all data visualization features.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+
+<div id="1d5642fe-748a-414b-a82a-8b85337c5524"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#1d5642fe-748a-414b-a82a-8b85337c5524');
+
+        if (typeof window.interactive_beam_jquery == 'undefined') {
+          var jqueryScript = document.createElement('script');
+          jqueryScript.src = 'https://code.jquery.com/jquery-3.4.1.slim.min.js';
+          jqueryScript.type = 'text/javascript';
+          jqueryScript.onload = function() {
+            var datatableScript = document.createElement('script');
+            datatableScript.src = 'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js';
+            datatableScript.type = 'text/javascript';
+            datatableScript.onload = function() {
+              window.interactive_beam_jquery = jQuery.noConflict(true);
+              window.interactive_beam_jquery(document).ready(function($){
+                
+              });
+            }
+            document.head.appendChild(datatableScript);
+          };
+          document.head.appendChild(jqueryScript);
+        } else {
+          window.interactive_beam_jquery(document).ready(function($){
+            
+          });
+        }
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:absl:Reading input TFRecord data /tmp/.keras/train/*.
+WARNING:apache_beam.io.tfrecordio:Couldn't find python-snappy so the implementation of _TFRecordUtil._masked_crc32c is not as fast as it could be.
+INFO:absl:Examples generated.
+INFO:absl:Running publisher for ImportExampleGen
+INFO:absl:MetadataStore with DB connection initialized
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+.tfx-object.expanded {
+  padding: 4px 8px 4px 8px;
+  background: white;
+  border: 1px solid #bbbbbb;
+  box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+}
+.tfx-object, .tfx-object * {
+  font-size: 11pt;
+}
+.tfx-object > .title {
+  cursor: pointer;
+}
+.tfx-object .expansion-marker {
+  color: #999999;
+}
+.tfx-object.expanded > .title > .expansion-marker:before {
+  content: '▼';
+}
+.tfx-object.collapsed > .title > .expansion-marker:before {
+  content: '▶';
+}
+.tfx-object .class-name {
+  font-weight: bold;
+}
+.tfx-object .deemphasize {
+  opacity: 0.5;
+}
+.tfx-object.collapsed > table.attr-table {
+  display: none;
+}
+.tfx-object.expanded > table.attr-table {
+  display: block;
+}
+.tfx-object table.attr-table {
+  border: 2px solid white;
+  margin-top: 5px;
+}
+.tfx-object table.attr-table td.attr-name {
+  vertical-align: top;
+  font-weight: bold;
+}
+.tfx-object table.attr-table td.attrvalue {
+  text-align: left;
+}
+</style>
+<script>
+function toggleTfxObject(element) {
+  var objElement = element.parentElement;
+  if (objElement.classList.contains('collapsed')) {
+    objElement.classList.remove('collapsed');
+    objElement.classList.add('expanded');
+  } else {
+    objElement.classList.add('collapsed');
+    objElement.classList.remove('expanded');
+  }
+}
+</script>
+<div class="tfx-object expanded">
+<div class="title" onclick="toggleTfxObject(this)">
+<span class="expansion-marker"></span><span class="class-name">ExecutionResult</span><span class="deemphasize"> at 0x10e255c70</span>
+</div>
+<table class="attr-table">
+<tr>
+<td class="attr-name">.execution_id</td>
+<td class="attrvalue">1</td>
+</tr>
+<tr>
+<td class="attr-name">.component</td>
+<td class="attrvalue">
+<style>
+.tfx-object.expanded {
+  padding: 4px 8px 4px 8px;
+  background: white;
+  border: 1px solid #bbbbbb;
+  box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+}
+.tfx-object, .tfx-object * {
+  font-size: 11pt;
+}
+.tfx-object > .title {
+  cursor: pointer;
+}
+.tfx-object .expansion-marker {
+  color: #999999;
+}
+.tfx-object.expanded > .title > .expansion-marker:before {
+  content: '▼';
+}
+.tfx-object.collapsed > .title > .expansion-marker:before {
+  content: '▶';
+}
+.tfx-object .class-name {
+  font-weight: bold;
+}
+.tfx-object .deemphasize {
+  opacity: 0.5;
+}
+.tfx-object.collapsed > table.attr-table {
+  display: none;
+}
+.tfx-object.expanded > table.attr-table {
+  display: block;
+}
+.tfx-object table.attr-table {
+  border: 2px solid white;
+  margin-top: 5px;
+}
+.tfx-object table.attr-table td.attr-name {
+  vertical-align: top;
+  font-weight: bold;
+}
+.tfx-object table.attr-table td.attrvalue {
+  text-align: left;
+}
+</style>
+<script>
+function toggleTfxObject(element) {
+  var objElement = element.parentElement;
+  if (objElement.classList.contains('collapsed')) {
+    objElement.classList.remove('collapsed');
+    objElement.classList.add('expanded');
+  } else {
+    objElement.classList.add('collapsed');
+    objElement.classList.remove('expanded');
+  }
+}
+</script>
+<div class="tfx-object collapsed">
+<div class="title" onclick="toggleTfxObject(this)">
+<span class="expansion-marker"></span><span class="class-name">ImportExampleGen</span><span class="deemphasize"> at 0x1866de640</span>
+</div>
+<table class="attr-table">
+<tr>
+<td class="attr-name">.inputs</td>
+<td class="attrvalue">{}</td>
+</tr>
+<tr>
+<td class="attr-name">.outputs</td>
+<td class="attrvalue"><table class="attr-table"><tr>
+<td class="attr-name">['examples']</td>
+<td class="attrvalue">
+<style>
+.tfx-object.expanded {
+  padding: 4px 8px 4px 8px;
+  background: white;
+  border: 1px solid #bbbbbb;
+  box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+}
+.tfx-object, .tfx-object * {
+  font-size: 11pt;
+}
+.tfx-object > .title {
+  cursor: pointer;
+}
+.tfx-object .expansion-marker {
+  color: #999999;
+}
+.tfx-object.expanded > .title > .expansion-marker:before {
+  content: '▼';
+}
+.tfx-object.collapsed > .title > .expansion-marker:before {
+  content: '▶';
+}
+.tfx-object .class-name {
+  font-weight: bold;
+}
+.tfx-object .deemphasize {
+  opacity: 0.5;
+}
+.tfx-object.collapsed > table.attr-table {
+  display: none;
+}
+.tfx-object.expanded > table.attr-table {
+  display: block;
+}
+.tfx-object table.attr-table {
+  border: 2px solid white;
+  margin-top: 5px;
+}
+.tfx-object table.attr-table td.attr-name {
+  vertical-align: top;
+  font-weight: bold;
+}
+.tfx-object table.attr-table td.attrvalue {
+  text-align: left;
+}
+</style>
+<script>
+function toggleTfxObject(element) {
+  var objElement = element.parentElement;
+  if (objElement.classList.contains('collapsed')) {
+    objElement.classList.remove('collapsed');
+    objElement.classList.add('expanded');
+  } else {
+    objElement.classList.add('collapsed');
+    objElement.classList.remove('expanded');
+  }
+}
+</script>
+<div class="tfx-object collapsed">
+<div class="title" onclick="toggleTfxObject(this)">
+<span class="expansion-marker"></span><span class="class-name">Channel</span> of type <span class="class-name">'Examples'</span> (1 artifact)<span class="deemphasize"> at 0x1866de7c0</span>
+</div>
+<table class="attr-table">
+<tr>
+<td class="attr-name">.type_name</td>
+<td class="attrvalue">Examples</td>
+</tr>
+<tr>
+<td class="attr-name">._artifacts</td>
+<td class="attrvalue"><table class="attr-table"><tr>
+<td class="attr-name">[0]</td>
+<td class="attrvalue">
+<style>
+.tfx-object.expanded {
+  padding: 4px 8px 4px 8px;
+  background: white;
+  border: 1px solid #bbbbbb;
+  box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+}
+.tfx-object, .tfx-object * {
+  font-size: 11pt;
+}
+.tfx-object > .title {
+  cursor: pointer;
+}
+.tfx-object .expansion-marker {
+  color: #999999;
+}
+.tfx-object.expanded > .title > .expansion-marker:before {
+  content: '▼';
+}
+.tfx-object.collapsed > .title > .expansion-marker:before {
+  content: '▶';
+}
+.tfx-object .class-name {
+  font-weight: bold;
+}
+.tfx-object .deemphasize {
+  opacity: 0.5;
+}
+.tfx-object.collapsed > table.attr-table {
+  display: none;
+}
+.tfx-object.expanded > table.attr-table {
+  display: block;
+}
+.tfx-object table.attr-table {
+  border: 2px solid white;
+  margin-top: 5px;
+}
+.tfx-object table.attr-table td.attr-name {
+  vertical-align: top;
+  font-weight: bold;
+}
+.tfx-object table.attr-table td.attrvalue {
+  text-align: left;
+}
+</style>
+<script>
+function toggleTfxObject(element) {
+  var objElement = element.parentElement;
+  if (objElement.classList.contains('collapsed')) {
+    objElement.classList.remove('collapsed');
+    objElement.classList.add('expanded');
+  } else {
+    objElement.classList.add('collapsed');
+    objElement.classList.remove('expanded');
+  }
+}
+</script>
+<div class="tfx-object collapsed">
+<div class="title" onclick="toggleTfxObject(this)">
+<span class="expansion-marker"></span><span class="class-name">Artifact</span> of type <span class="class-name">'Examples'</span> (uri: /var/folders/sr/1jd3j8k5791g_37qk2vdcc_80069vh/T/tfx-interactive-2021-04-03T16_45_34.079859-3hgwznh2/ImportExampleGen/examples/1)<span class="deemphasize"> at 0x1866f0220</span>
+</div>
+<table class="attr-table">
+<tr>
+<td class="attr-name">.type</td>
+<td class="attrvalue">&lt;class 'tfx.types.standard_artifacts.Examples'&gt;</td>
+</tr>
+<tr>
+<td class="attr-name">.uri</td>
+<td class="attrvalue">/var/folders/sr/1jd3j8k5791g_37qk2vdcc_80069vh/T/tfx-interactive-2021-04-03T16_45_34.079859-3hgwznh2/ImportExampleGen/examples/1</td>
+</tr>
+<tr>
+<td class="attr-name">.span</td>
+<td class="attrvalue">0</td>
+</tr>
+<tr>
+<td class="attr-name">.split_names</td>
+<td class="attrvalue">["train", "eval"]</td>
+</tr>
+<tr>
+<td class="attr-name">.version</td>
+<td class="attrvalue">0</td>
+</tr>
+</table>
+</div>
+</td>
+</tr></table></td>
+</tr>
+</table>
+</div>
+</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="attr-name">.exec_properties</td>
+<td class="attrvalue"><table class="attr-table">
+<tr>
+<td class="attr-name">['input_base']</td>
+<td class="attrvalue">/tmp/.keras/train</td>
+</tr>
+<tr>
+<td class="attr-name">['input_config']</td>
+<td class="attrvalue">{
+  "splits": [
+    {
+      "name": "single_split",
+      "pattern": "*"
+    }
+  ]
+}</td>
+</tr>
+<tr>
+<td class="attr-name">['output_config']</td>
+<td class="attrvalue">{
+  "split_config": {
+    "splits": [
+      {
+        "hash_buckets": 3,
+        "name": "train"
+      },
+      {
+        "hash_buckets": 1,
+        "name": "eval"
+      }
+    ]
+  }
+}</td>
+</tr>
+<tr>
+<td class="attr-name">['output_data_format']</td>
+<td class="attrvalue">6</td>
+</tr>
+<tr>
+<td class="attr-name">['custom_config']</td>
+<td class="attrvalue">None</td>
+</tr>
+<tr>
+<td class="attr-name">['range_config']</td>
+<td class="attrvalue">None</td>
+</tr>
+<tr>
+<td class="attr-name">['span']</td>
+<td class="attrvalue">0</td>
+</tr>
+<tr>
+<td class="attr-name">['version']</td>
+<td class="attrvalue">None</td>
+</tr>
+<tr>
+<td class="attr-name">['input_fingerprint']</td>
+<td class="attrvalue">split:single_split,num_files:5,total_bytes:9813103,xor_checksum:1617461143,sum_checksum:7984741591</td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+<tr>
+<td class="attr-name">.component.inputs</td>
+<td class="attrvalue">{}</td>
+</tr>
+<tr>
+<td class="attr-name">.component.outputs</td>
+<td class="attrvalue"><table class="attr-table"><tr>
+<td class="attr-name">['examples']</td>
+<td class="attrvalue">
+<style>
+.tfx-object.expanded {
+  padding: 4px 8px 4px 8px;
+  background: white;
+  border: 1px solid #bbbbbb;
+  box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+}
+.tfx-object, .tfx-object * {
+  font-size: 11pt;
+}
+.tfx-object > .title {
+  cursor: pointer;
+}
+.tfx-object .expansion-marker {
+  color: #999999;
+}
+.tfx-object.expanded > .title > .expansion-marker:before {
+  content: '▼';
+}
+.tfx-object.collapsed > .title > .expansion-marker:before {
+  content: '▶';
+}
+.tfx-object .class-name {
+  font-weight: bold;
+}
+.tfx-object .deemphasize {
+  opacity: 0.5;
+}
+.tfx-object.collapsed > table.attr-table {
+  display: none;
+}
+.tfx-object.expanded > table.attr-table {
+  display: block;
+}
+.tfx-object table.attr-table {
+  border: 2px solid white;
+  margin-top: 5px;
+}
+.tfx-object table.attr-table td.attr-name {
+  vertical-align: top;
+  font-weight: bold;
+}
+.tfx-object table.attr-table td.attrvalue {
+  text-align: left;
+}
+</style>
+<script>
+function toggleTfxObject(element) {
+  var objElement = element.parentElement;
+  if (objElement.classList.contains('collapsed')) {
+    objElement.classList.remove('collapsed');
+    objElement.classList.add('expanded');
+  } else {
+    objElement.classList.add('collapsed');
+    objElement.classList.remove('expanded');
+  }
+}
+</script>
+<div class="tfx-object collapsed">
+<div class="title" onclick="toggleTfxObject(this)">
+<span class="expansion-marker"></span><span class="class-name">Channel</span> of type <span class="class-name">'Examples'</span> (1 artifact)<span class="deemphasize"> at 0x1866de7c0</span>
+</div>
+<table class="attr-table">
+<tr>
+<td class="attr-name">.type_name</td>
+<td class="attrvalue">Examples</td>
+</tr>
+<tr>
+<td class="attr-name">._artifacts</td>
+<td class="attrvalue"><table class="attr-table"><tr>
+<td class="attr-name">[0]</td>
+<td class="attrvalue">
+<style>
+.tfx-object.expanded {
+  padding: 4px 8px 4px 8px;
+  background: white;
+  border: 1px solid #bbbbbb;
+  box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+}
+.tfx-object, .tfx-object * {
+  font-size: 11pt;
+}
+.tfx-object > .title {
+  cursor: pointer;
+}
+.tfx-object .expansion-marker {
+  color: #999999;
+}
+.tfx-object.expanded > .title > .expansion-marker:before {
+  content: '▼';
+}
+.tfx-object.collapsed > .title > .expansion-marker:before {
+  content: '▶';
+}
+.tfx-object .class-name {
+  font-weight: bold;
+}
+.tfx-object .deemphasize {
+  opacity: 0.5;
+}
+.tfx-object.collapsed > table.attr-table {
+  display: none;
+}
+.tfx-object.expanded > table.attr-table {
+  display: block;
+}
+.tfx-object table.attr-table {
+  border: 2px solid white;
+  margin-top: 5px;
+}
+.tfx-object table.attr-table td.attr-name {
+  vertical-align: top;
+  font-weight: bold;
+}
+.tfx-object table.attr-table td.attrvalue {
+  text-align: left;
+}
+</style>
+<script>
+function toggleTfxObject(element) {
+  var objElement = element.parentElement;
+  if (objElement.classList.contains('collapsed')) {
+    objElement.classList.remove('collapsed');
+    objElement.classList.add('expanded');
+  } else {
+    objElement.classList.add('collapsed');
+    objElement.classList.remove('expanded');
+  }
+}
+</script>
+<div class="tfx-object collapsed">
+<div class="title" onclick="toggleTfxObject(this)">
+<span class="expansion-marker"></span><span class="class-name">Artifact</span> of type <span class="class-name">'Examples'</span> (uri: /var/folders/sr/1jd3j8k5791g_37qk2vdcc_80069vh/T/tfx-interactive-2021-04-03T16_45_34.079859-3hgwznh2/ImportExampleGen/examples/1)<span class="deemphasize"> at 0x1866f0220</span>
+</div>
+<table class="attr-table">
+<tr>
+<td class="attr-name">.type</td>
+<td class="attrvalue">&lt;class 'tfx.types.standard_artifacts.Examples'&gt;</td>
+</tr>
+<tr>
+<td class="attr-name">.uri</td>
+<td class="attrvalue">/var/folders/sr/1jd3j8k5791g_37qk2vdcc_80069vh/T/tfx-interactive-2021-04-03T16_45_34.079859-3hgwznh2/ImportExampleGen/examples/1</td>
+</tr>
+<tr>
+<td class="attr-name">.span</td>
+<td class="attrvalue">0</td>
+</tr>
+<tr>
+<td class="attr-name">.split_names</td>
+<td class="attrvalue">["train", "eval"]</td>
+</tr>
+<tr>
+<td class="attr-name">.version</td>
+<td class="attrvalue">0</td>
+</tr>
+</table>
+</div>
+</td>
+</tr></table></td>
+</tr>
+</table>
+</div>
+</td>
+</tr></table></td>
+</tr>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
